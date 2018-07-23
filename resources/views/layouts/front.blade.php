@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,19 +47,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">{{ __('Home') }} <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('front.home') }}">{{ __('Home') }} <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">{{ __('Projects') }}</a>
+                                <a class="nav-link" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Tech stack') }}</a>
+                                <a class="nav-link" href="{{ route('front.tech') }}">{{ __('Tech stack') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Blog') }}</a>
+                                <a class="nav-link" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Contact') }}</a>
+                                <a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
                             </li>
                         </ul>
                     </div>

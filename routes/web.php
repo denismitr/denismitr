@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Front front
+Route::get('/', 'FrontPagesController@home')->name('front.home');
+Route::get('/blog', 'FrontPagesController@blog')->name('front.blog');
+Route::get('/contact', 'FrontPagesController@contact')->name('front.contact');
+Route::get('/projects', 'FrontPagesController@projects')->name('front.projects');
+Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/locale/russian/change', 'LocaleController@russian')
     ->name('locale.change.russian');
