@@ -1,0 +1,21 @@
+
+// Colors
+$dark: #464B51;
+$orange: #f09f36;
+$red: #b24000;
+
+$theme-colors: (
+    warning: $orange,
+    dark: $dark,
+    danger: $red
+);
+
+$brand-warning: $orange;
+
+// Body
+$body-bg: #fff;
+
+// Typography
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
