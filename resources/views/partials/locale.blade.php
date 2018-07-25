@@ -1,4 +1,4 @@
-<span class="dropdown">
+<span class="inline-block">
     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="locale" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ app()->getLocale() }}
     </button>

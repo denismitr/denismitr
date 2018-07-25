@@ -22,20 +22,20 @@
 </head>
 <body>
     <div id="app">
-        <header>
-            <div class="bg-dark p-2">
-                <div class="container">
-                    <div class="bg-dark d-flex justify-content-between text-warning">
+        <header class="w-full">
+            <div class="bg-grey-dark py-3">
+                <div class="container mx-auto">
+                    <div class="bg-grey-dark flex justify-between text-orange">
                         <span>
                             <span class="mr-2">{{ __('My personal website') }}</span>
-                            @include('partials.locale')
+                            <locale-select locale="{{ app()->getLocale() }}"></locale-select>
                         </span>
                         <span>{{ business('email') }}</span>
                     </div>
                 </div>
             </div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
+            <nav class="flex items-center justify-between flex-wrap p-6 bg-white">
+                <div class="container mx-auto">
                     <a class="navbar-brand" href="#">
                         <span class="text-danger">{{ business('first_name') }}</span>
                         <span>{{ business('last_name') }}</span>

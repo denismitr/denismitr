@@ -9,16 +9,14 @@ class LocaleController extends Controller
     public function russian()
     {
         session()->put('locale', 'ru');
-        session()->save();
 
-        return back();
+        return response()->json(null, 204);
     }
 
     public function english()
     {
         session()->put('locale', 'en');
-        session()->save();
 
-        return back();
+        return response()->json(null, 204);
     }
 }
