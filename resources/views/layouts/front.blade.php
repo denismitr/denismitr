@@ -65,9 +65,8 @@
             </div>
         </header>
 
-        @yield('keyboard')
-
-        <main class="py-4">
+        <main>
+            @yield('keyboard')
             @yield('content')
         </main>
     </div>

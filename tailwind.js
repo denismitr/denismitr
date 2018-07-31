@@ -48,10 +48,10 @@ let colors = {
 
   'black': '#22292f',
   'grey-darkest': '#3d4852',
-  'grey-darker': '#606f7b',
+  'grey-darker': '#818285',
   'grey-dark': '#464b51',
   'grey': '#717171',
-  'grey-light': '#dae1e7',
+  'grey-light': '#ECECEC',
   'grey-lighter': '#f1f5f8',
   'grey-lightest': '#f8fafc',
   'white': '#ffffff',
