@@ -20,8 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="w-full">
+    <div id="app" class="w-full">
         <header class="w-full">
             <div class="bg-grey-dark py-3">
                 <div class="container mx-auto">
@@ -34,38 +34,38 @@
                     </div>
                 </div>
             </div>
-            <nav class="flex items-center justify-between flex-wrap p-6 bg-white">
-                <div class="container mx-auto">
-                    <a class="navbar-brand" href="#">
-                        <span class="text-danger">{{ business('first_name') }}</span>
-                        <span>{{ business('last_name') }}</span>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('front.home') }}">{{ __('Home') }} <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('front.tech') }}">{{ __('Tech stack') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
-                            </li>
-                        </ul>
+            <div class="container mx-auto">
+                <nav class="flex items-center justify-between px-5 bg-white flex-wrap">
+                    <h1 class="flex items-center flex-no-shrink text-2xl mr-6 my-0 p-3">
+                        <a class="text-grey no-underline" href="#">
+                            <span class="text-red">{{ business('first_name') }}</span>
+                            <span class="text-grey">{{ business('last_name') }}</span>
+                        </a>
+                    </h1>
+    
+                    <div class="md:hidden">
+                        <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+                            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <title>Menu</title>
+                                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                            </svg>
+                        </button>
                     </div>
-                </div>
-            </nav>
+                        
+                    <div class="w-flow block flex-grow md:flex md:items-center w-full md:w-auto lg:w-auto">
+                        <div class="md:w-full text-sm md:flex justify-end">
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.home') }}">{{ __('Home') }}</a>
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.tech') }}">{{ __('Tech stack') }}</a>
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </header>
+
+        @yield('keyboard')
 
         <main class="py-4">
             @yield('content')

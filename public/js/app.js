@@ -36232,7 +36232,7 @@ var render = function() {
       "select",
       {
         staticClass:
-          "block w-full appearance-none bg-grey rounded border border-grey-light hover:border-grey px-2 leading-tight",
+          "block w-full appearance-none bg-grey-lighter rounded border border-grey-light hover:border-grey px-2 leading-tight",
         on: { change: _vm.onChange }
       },
       [

@@ -1,6 +1,6 @@
 <template>
     <div class="inline-block w-16 relative">
-        <select class="block w-full appearance-none bg-grey rounded border border-grey-light hover:border-grey px-2 leading-tight" @change="onChange">
+        <select class="block w-full appearance-none bg-grey-lighter rounded border border-grey-light hover:border-grey px-2 leading-tight" @change="onChange">
             <option :selected="locale === 'ru'">ru</option>
             <option :selected="locale === 'en'">en</option>
         </select>
