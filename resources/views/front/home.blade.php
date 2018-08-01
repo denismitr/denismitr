@@ -24,4 +24,5 @@
     </article>
 </div>
 @include('front.components.activities')
+@include('front.components.latest-projects')
 @endsection
