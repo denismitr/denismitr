@@ -20,9 +20,17 @@ Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
 
 Auth::routes();
 
-Route::group(['prefix' => '/auth/login'], function() {
+Route::group(['prefix' => 'auth/login'], function() {
     Route::get('/', 'LoginController@show')->name('auth.login.show');
     Route::post('/', 'LoginController@login')->name('auth.login');
+});
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => 'admin'
+], function() {
+     Route::get('/', 'DashboardController@index')->name('admin');
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

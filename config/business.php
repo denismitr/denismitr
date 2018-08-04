@@ -1,6 +1,10 @@
 <?php
 
 return [
+    "administration" => [
+        "email" => "denis.mitr@gmail.com"
+    ],
+
     "en" => [
         'email' => 'denis.mitr@gmail.com',
         'name' => 'Denis Mitrofanov',
