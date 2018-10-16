@@ -55,4 +55,13 @@ class User extends Authenticatable
             'last_logged_in' => Carbon::now(),
         ]);
     }
+
+    /**
+     * @param string $password
+     */
+    public function setNewPassword(string $password): void
+    {
+        $this->password = bcrypt($password);
+        $this->save();
+    }
 }

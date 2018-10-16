@@ -40,6 +40,9 @@ Route::group([
      Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
      Route::put('/business', 'BusinessDetailsController@update')->name('admin.business.update');
+
+     Route::get('/security', 'SecurityController@show')->name('admin.security.show');
+     Route::put('/security', 'SecurityController@update')->name('admin.security.update');
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

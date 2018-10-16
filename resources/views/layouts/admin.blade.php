@@ -49,22 +49,15 @@
 
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">
-                                More
+                                Personal details
                             </a>
 
                             <div class="navbar-dropdown">
-                                <a class="navbar-item">
-                                    About
+                                <a href="{{ route('admin.dashboard') }}" class="navbar-item">
+                                    Business details
                                 </a>
-                                <a class="navbar-item">
-                                    Jobs
-                                </a>
-                                <a class="navbar-item">
-                                    Contact
-                                </a>
-                                <hr class="navbar-divider">
-                                <a class="navbar-item">
-                                    Report an issue
+                                <a href="{{ route('admin.security.show') }}" class="navbar-item">
+                                    Security
                                 </a>
                             </div>
                         </div>
@@ -97,7 +90,10 @@
                                     </p>
                                     <ul class="menu-list">
                                         <li>
-                                            <a href="{{ route('admin.dashboard') }}">Business and security</a>
+                                            <a href="{{ route('admin.dashboard') }}">Business details</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.security.show') }}">Security</a>
                                         </li>
                                     </ul>
                                     <p class="menu-label">
