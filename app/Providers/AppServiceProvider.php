@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Business;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function($view) {
+            $business = Cache::rememberForever('business', function() {
+                return Business::firstOrFail();
+            });
+
+            $view->with('business', $business);
+        });
     }
 
     /**

@@ -38,6 +38,8 @@ Route::group([
     'middleware' => ['auth', 'admin']
 ], function() {
      Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+
+     Route::put('/business', 'BusinessDetailsController@update')->name('admin.business.update');
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

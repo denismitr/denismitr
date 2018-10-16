@@ -17,7 +17,7 @@
                                     <p class="icon is-small is-left">
                                         <i class="fas fa-envelope"></i>
                                     </p>
-                                    @if($errors->has('password'))
+                                    @if($errors->has('email'))
                                         <p class="icon is-small is-right">
                                             <i class="fas fa-exclamation-triangle"></i>
                                         </p>
