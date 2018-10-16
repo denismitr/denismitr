@@ -22,8 +22,8 @@ class CreateProjectsTable extends Migration
             $table->text('description_en');
             $table->text('description_ru');
             $table->timestamp('published_at')->nullable();
-            $table->timestamp('finished_at')->nullable();
-            $table->string('picture');
+            $table->string('picture')->nullable();
+            $table->string('color', 10)->nullable();
             $table->unsignedTinyInteger('priority')->default(0);
             $table->timestamps();
 

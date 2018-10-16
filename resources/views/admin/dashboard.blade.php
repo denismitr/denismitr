@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="py-7">
-    <h2>Dashboard</h2>
-</div>
+    <div class="card">
+        <div class="card-content">
+            <p class="title">Business details</p>
+        </div>
+    </div>
 @endsection

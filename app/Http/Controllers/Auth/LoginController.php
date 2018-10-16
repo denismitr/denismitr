@@ -2,38 +2,58 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\AdminNotFound;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\AdminLoginRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+    const REDIRECT_TO_ROUTE = 'admin.dashboard';
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function show()
     {
-        $this->middleware('guest')->except('logout');
+        return view('admin.login');
+    }
+
+    public function login(AdminLoginRequest $request)
+    {
+        try {
+            $admin = User::getAdmin($request->input('email'));
+        } catch (AdminNotFound $e) {
+            return $this->authenticationFailed("User not found!");
+        }
+
+        if ( ! Hash::check($request->input('password'), $admin->password) ) {
+            return $this->authenticationFailed("Authentication failed!");
+        }
+
+        auth()->login($admin, !! $request->input('remember'));
+
+        $admin->justLoggedIn();
+
+        return redirect()->route(self::REDIRECT_TO_ROUTE);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        session()->regenerate(true);
+
+        return redirect('/');
+    }
+
+    /**
+     * @param string $message
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function authenticationFailed(string $message)
+    {
+        return back()->withErrors([
+            'email' => $message,
+        ])->withInput();
     }
 }

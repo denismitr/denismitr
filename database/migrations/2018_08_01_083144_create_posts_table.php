@@ -19,9 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('description');
             $table->string('body');
             $table->string('slug');
-            $table->string('lang', 2);
+            $table->enum('lang', ['en', 'ru']);
 
-            $table->index('lang');
             $table->unique('slug');
 
             $table->timestamps();

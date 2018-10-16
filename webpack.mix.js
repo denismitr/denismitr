@@ -12,7 +12,7 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/assets/js/app.js', 'public/js');
 
 mix.less('resources/assets/less/app.less', 'public/css')
   .options({
@@ -20,3 +20,6 @@ mix.less('resources/assets/less/app.less', 'public/css')
       tailwindcss('./tailwind.js'),
     ]
   }).version();
+
+mix.sass('resources/assets/sass/admin.sass', 'public/css')
+    .version();

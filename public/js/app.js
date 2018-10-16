@@ -47453,11 +47453,19 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/sass/admin.sass":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/app.js");
-module.exports = __webpack_require__("./resources/assets/less/app.less");
+__webpack_require__("./resources/assets/less/app.less");
+module.exports = __webpack_require__("./resources/assets/sass/admin.sass");
 
 
 /***/ })

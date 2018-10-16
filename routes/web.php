@@ -18,19 +18,26 @@ Route::get('/contact', 'FrontPagesController@contact')->name('front.contact');
 Route::get('/projects', 'FrontPagesController@projects')->name('front.projects');
 Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
 
-Auth::routes();
-
-Route::group(['prefix' => 'auth/login'], function() {
-    Route::get('/', 'LoginController@show')->name('auth.login.show');
-    Route::post('/', 'LoginController@login')->name('auth.login');
+// Authentication Routes...
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('login', 'Auth\LoginController@show')->name('login.show');
+    Route::post('login', 'Auth\LoginController@login')->name('login');
 });
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => 'admin'
+    'middleware' => ['auth', 'admin']
 ], function() {
-     Route::get('/', 'DashboardController@index')->name('admin');
+     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

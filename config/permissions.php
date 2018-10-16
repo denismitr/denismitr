@@ -5,7 +5,7 @@ return [
         'permission' => \Denismitr\Permissions\Models\Permission::class,
         'auth_group' => \Denismitr\Permissions\Models\AuthGroup::class,
         'auth_group_user' => \Denismitr\Permissions\Models\AuthGroupUser::class,
-        'user' => 'App\User',
+        'user' => 'App\Models\User',
     ],
 
     'tables' => [
