@@ -62,7 +62,7 @@ class TopicsController extends Controller
      */
     public function edit(Topic $topic)
     {
-        return view('admin.topics.confirm', ['topic' => $topic]);
+        return view('admin.topics.edit', ['topic' => $topic]);
     }
 
     /**

@@ -49,7 +49,7 @@ Route::group([
          Route::post('/', 'TopicsController@store')->name('admin.topics.store');
          Route::get('/{topic}', 'TopicsController@edit')->name('admin.topics.edit');
          Route::put('/{topic}', 'TopicsController@update')->name('admin.topics.update');
-         Route::put('/{topic}/confirm', 'TopicsController@confirm')->name('admin.topics.confirm');
+         Route::get('/{topic}/confirm', 'TopicsController@confirm')->name('admin.topics.confirm');
          Route::delete('/{topic}', 'TopicsController@destroy')->name('admin.topics.delete');
      });
 });

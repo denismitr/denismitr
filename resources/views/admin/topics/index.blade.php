@@ -17,7 +17,7 @@
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control has-icons-right">
-                        <input class="input{{  $errors->first('name') ? ' is-danger' : '' }}" name="name" type="text">
+                        <input class="input{{  $errors->first('name') ? ' is-danger' : '' }}" name="name" type="text" value="{{ old('name') }}">
                         @if($errors->has('name'))
                             <p class="icon is-small is-right">
                                 <i class="fas fa-exclamation-triangle"></i>

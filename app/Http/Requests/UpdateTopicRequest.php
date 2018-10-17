@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Topic;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,8 +25,14 @@ class UpdateTopicRequest extends FormRequest
      */
     public function rules()
     {
+        $topic = Topic::whereSlug($this->slug)->firstOrFail();
+
         return [
-            'name' => ['required', 'min:3', Rule::unique('topics')->ignore($this->_id)],
+            'name' => [
+                'required',
+                'min:3',
+                Rule::unique('topics')->ignore($topic->id)
+            ],
         ];
     }
 }
