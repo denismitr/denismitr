@@ -41,8 +41,17 @@ Route::group([
 
      Route::put('/business', 'BusinessDetailsController@update')->name('admin.business.update');
 
-     Route::get('/security', 'SecurityController@show')->name('admin.security.show');
+     Route::get('/security', 'SecurityController@edit')->name('admin.security.edit');
      Route::put('/security', 'SecurityController@update')->name('admin.security.update');
+
+     Route::group(['prefix' => 'topics'], function() {
+         Route::get('/', 'TopicsController@index')->name('admin.topics.index');
+         Route::post('/', 'TopicsController@store')->name('admin.topics.store');
+         Route::get('/{topic}', 'TopicsController@edit')->name('admin.topics.edit');
+         Route::put('/{topic}', 'TopicsController@update')->name('admin.topics.update');
+         Route::put('/{topic}/confirm', 'TopicsController@confirm')->name('admin.topics.confirm');
+         Route::delete('/{topic}', 'TopicsController@destroy')->name('admin.topics.delete');
+     });
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

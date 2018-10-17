@@ -56,7 +56,7 @@
                                 <a href="{{ route('admin.dashboard') }}" class="navbar-item">
                                     Business details
                                 </a>
-                                <a href="{{ route('admin.security.show') }}" class="navbar-item">
+                                <a href="{{ route('admin.security.edit') }}" class="navbar-item">
                                     Security
                                 </a>
                             </div>
@@ -93,12 +93,17 @@
                                             <a href="{{ route('admin.dashboard') }}">Business details</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('admin.security.show') }}">Security</a>
+                                            <a href="{{ route('admin.security.edit') }}">Security</a>
                                         </li>
                                     </ul>
                                     <p class="menu-label">
                                         Administration
                                     </p>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="{{ route('admin.topics.index') }}">Topics</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

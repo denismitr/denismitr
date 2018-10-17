@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class SecurityController extends Controller
 {
-    public function show(Request $request)
+    public function edit(Request $request)
     {
         /** @var User $user */
         $user = $request->user();

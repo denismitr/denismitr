@@ -14,8 +14,6 @@
                 </div>
             @endif
 
-
-
             <div class="field">
                 <label class="label">Old password</label>
                 <div class="control has-icons-left has-icons-right">
