@@ -55,6 +55,7 @@ Route::group([
 
     Route::group(['prefix' => 'projects'], function() {
         Route::get('/', 'ProjectsController@index')->name('admin.projects.index');
+        Route::get('/create', 'ProjectsController@create')->name('admin.projects.create');
         Route::post('/', 'ProjectsController@store')->name('admin.projects.store');
         Route::get('/{project}', 'ProjectsController@edit')->name('admin.projects.edit');
         Route::put('/{project}', 'ProjectsController@update')->name('admin.projects.update');

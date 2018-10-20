@@ -2,7 +2,17 @@
 
 @section('content')
     <section>
-        <h2 class="h2">Projects</h2>
+        <h2 class="title is-2">Projects</h2>
+        <p>
+            <a class="button is-success" href="{{ route('admin.projects.create') }}">Create</a>
+        </p>
+
+        @if(session()->has('project.success'))
+            <br><br>
+            <div class="notification is-success">
+                {{ session()->get('project.success') }}
+            </div>
+        @endif
     </section>
     <section class="section">
         @foreach($projects as $project)

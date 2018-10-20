@@ -18,11 +18,11 @@ class CreateProjectsTable extends Migration
             $table->unsignedInteger('customer_id')->nullable();
             $table->string('name');
             $table->string('url')->nullable();
-            $table->text('description_en');
-            $table->text('description_ru');
+            $table->text('description_en')->nullable();
+            $table->text('description_ru')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->string('picture')->nullable();
-            $table->string('color', 10)->nullable();
+            $table->string('color', 10);
             $table->unsignedTinyInteger('priority')->default(0);
             $table->timestamps();
 
