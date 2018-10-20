@@ -61,6 +61,21 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                Administration
+                            </a>
+
+                            <div class="navbar-dropdown">
+                                <a href="{{ route('admin.projects.index') }}" class="navbar-item">
+                                    Projects
+                                </a>
+                                <a href="{{ route('admin.topics.index') }}" class="navbar-item">
+                                    Topics
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="navbar-end">
@@ -102,6 +117,9 @@
                                     <ul class="menu-list">
                                         <li>
                                             <a href="{{ route('admin.topics.index') }}">Topics</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.projects.index') }}">Projects</a>
                                         </li>
                                     </ul>
                                 </div>

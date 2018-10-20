@@ -49,7 +49,7 @@ class CreateLaravelPermissions extends Migration
             $table->unique(['permission_id', 'auth_group_id'], 'lp_agp_unique');
         });
 
-        Schema::create('auth_group_users', function (Blueprint $table) {
+            Schema::create('auth_group_users', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('auth_group_id');
             $table->unsignedInteger('user_id');

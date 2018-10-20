@@ -14,7 +14,7 @@ class CreateAdminCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:create';
+    protected $signature = 'admin:create {--password=}';
 
     /**
      * The console command description.
@@ -42,7 +42,7 @@ class CreateAdminCommand extends Command
      */
     public function handle()
     {
-        $password = $this->ask('Enter password');
+        $password = $this->option('password');
 
         if (!AuthGroup::existsWithName('admins')) {
             AuthGroup::create(['name' => 'admins']);

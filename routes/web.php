@@ -52,6 +52,15 @@ Route::group([
          Route::get('/{topic}/confirm', 'TopicsController@confirm')->name('admin.topics.confirm');
          Route::delete('/{topic}', 'TopicsController@destroy')->name('admin.topics.delete');
      });
+
+    Route::group(['prefix' => 'projects'], function() {
+        Route::get('/', 'ProjectsController@index')->name('admin.projects.index');
+        Route::post('/', 'ProjectsController@store')->name('admin.projects.store');
+        Route::get('/{project}', 'ProjectsController@edit')->name('admin.projects.edit');
+        Route::put('/{project}', 'ProjectsController@update')->name('admin.projects.update');
+        Route::get('/{project}/confirm', 'ProjectsController@confirm')->name('admin.projects.confirm');
+        Route::delete('/{project}', 'ProjectsController@destroy')->name('admin.projects.delete');
+    });
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')

@@ -19,6 +19,14 @@ class DatabaseSeeder extends Seeder
 
         $tables = [
             'topics',
+            'projects',
+            'posts',
+            'users',
+            'auth_groups',
+            'auth_group_permissions',
+            'permissions',
+            'auth_group_users',
+            'auth_group_user_permissions',
         ];
 
         $this->command->info("Unguarding models...");
@@ -35,6 +43,8 @@ class DatabaseSeeder extends Seeder
 
         Model::reguard();
 
+        $this->call(UsersTableSeeder::class);
         $this->call(TopicsTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
     }
 }

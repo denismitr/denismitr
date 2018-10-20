@@ -16,9 +16,8 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id')->nullable();
-            $table->string('name_en');
-            $table->string('name_ru');
-            $table->string('url');
+            $table->string('name');
+            $table->string('url')->nullable();
             $table->text('description_en');
             $table->text('description_ru');
             $table->timestamp('published_at')->nullable();
