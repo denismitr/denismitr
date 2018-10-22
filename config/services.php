@@ -36,7 +36,8 @@ return [
     ],
 
     'images' => [
-        'driver' => 'imagick'
+        'driver' => 'imagick',
+        'disk' => 'public',
     ],
 
 ];

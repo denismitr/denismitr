@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -24,6 +25,12 @@ class Project extends Model
         static::creating(function($project) {
             $project->slug = str_slug($project->name);
         });
+
+        static::deleted(function($project) {
+            if (!empty($project->picture)) {
+                Storage::disk('public')->delete($project->picture);
+            }
+        });
     }
 
     public function getRouteKey()
@@ -38,11 +45,19 @@ class Project extends Model
 
     public function getPicture()
     {
-        if (Str::contains($this->picture, ['http://', 'https://'])) {
+        if ($this->hasExternalPicture()) {
             return $this->picture;
         }
 
         return asset('storage/'.$this->picture);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExternalPicture(): bool
+    {
+        return Str::contains($this->picture, ['http://', 'https://']);
     }
     
     /*

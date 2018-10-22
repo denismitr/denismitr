@@ -9,19 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use \Throwable;
 
 class CriticalErrorOccurred
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $error;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Throwable $error)
     {
-        //
+        $this->error = $error;
     }
 
     /**

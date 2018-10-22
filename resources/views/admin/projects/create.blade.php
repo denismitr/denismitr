@@ -6,11 +6,7 @@
             <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="card-content">
                 <p class="title">Create project</p>
 
-                @if(session()->has('project.success'))
-                    <div class="notification is-success">
-                        {{ session()->get('project.success') }}
-                    </div>
-                @endif
+                @include('admin._notification')
 
                 @csrf
 

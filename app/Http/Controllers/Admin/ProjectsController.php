@@ -6,9 +6,11 @@ use App\Events\CriticalErrorOccurred;
 use App\Exceptions\ImageOptimizationError;
 use App\Helpers\Image;
 use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -46,12 +48,12 @@ class ProjectsController extends Controller
         } catch (\Throwable $t) {
             CriticalErrorOccurred::dispatch($t);
 
-            session()->flash('project.error', $t->getMessage());
+            session()->flash('error', $t->getMessage());
 
             return back()->withInput();
         }
 
-        session()->flash('project.success', "Project {$request->name} created.");
+        session()->flash('success', "Project {$request->name} created.");
 
         return redirect()->route('admin.projects.index');
     }
@@ -59,6 +61,64 @@ class ProjectsController extends Controller
     public function edit(Project $project)
     {
         return view('admin.projects.edit', ['project' => $project]);
+    }
+
+    /**
+     * @param UpdateProjectRequest $request
+     * @param Project $project
+     * @param Image $image
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UpdateProjectRequest $request, Project $project, Image $image)
+    {
+        try {
+            if ($request->hasFile('picture')) {
+                $image->fromRequest($request, 'picture')
+                    ->resize(100)
+                    ->encode()
+                    ->save();
+
+                $filename = $request->file('picture')->store('projects', 'public');
+                Storage::disk('public')->delete($project->picture);
+            }
+
+            $project->update(
+                $this->getData($request, $filename ?? null)
+            );
+        } catch (\Throwable $t) {
+            CriticalErrorOccurred::dispatch($t);
+
+            session()->flash('error', $t->getMessage());
+
+            return back()->withInput();
+        }
+
+        session()->flash('success', "Project {$request->name} updated.");
+
+        return redirect()->route('admin.projects.index');
+    }
+
+    /**
+     * @param Project $project
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function confirm(Project $project)
+    {
+        return view('admin.projects.confirm', ['project' => $project]);
+    }
+
+    /**
+     * @param Project $project
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(Project $project)
+    {
+        $project->delete();
+
+        session()->flash('success', "Project {$project->name} deleted.");
+
+        return redirect()->route('admin.projects.index');
     }
 
     /**

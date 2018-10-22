@@ -1,4 +1,8 @@
 <div class="field">
+    @isset($project)
+        <input type="hidden" name="_id" value="{{ $project->id }}">
+    @endisset
+
     <label class="label">Name</label>
     <div class="control has-icons-right">
         <input class="input{{  $errors->first('name') ? ' is-danger' : '' }}" name="name" type="text" value="{{ old('name', $project->name ?? null) }}">

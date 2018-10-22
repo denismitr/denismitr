@@ -7,12 +7,7 @@
             <a class="button is-success" href="{{ route('admin.projects.create') }}">Create</a>
         </p>
 
-        @if(session()->has('project.success'))
-            <br><br>
-            <div class="notification is-success">
-                {{ session()->get('project.success') }}
-            </div>
-        @endif
+        @include('admin._notification')
     </section>
     <section class="section">
         @foreach($projects as $project)
@@ -21,6 +16,7 @@
                     <div class="content">
                         <p><strong>{{ $project->name }}</strong></p>
                         <p>{{ $project->url }}</p>
+                        <p>Priority: {{ $project->priority }}</p>
                     </div>
                     <nav class="level is-media">
                         <a class="button is-warning" href="{{ route('admin.projects.edit', $project->getRouteKey()) }}">Edit</a>
