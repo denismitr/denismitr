@@ -67,10 +67,10 @@ Route::group([
         Route::get('/', 'PostsController@index')->name('admin.posts.index');
         Route::get('/create', 'PostsController@create')->name('admin.posts.create');
         Route::post('/', 'PostsController@store')->name('admin.posts.store');
-        Route::get('/{project}', 'PostsController@edit')->name('admin.posts.edit');
-        Route::put('/{project}', 'PostsController@update')->name('admin.posts.update');
-        Route::get('/{project}/confirm', 'PostsController@confirm')->name('admin.posts.confirm');
-        Route::delete('/{project}', 'PostsController@destroy')->name('admin.posts.delete');
+        Route::get('/{post}', 'PostsController@edit')->name('admin.posts.edit');
+        Route::put('/{post}', 'PostsController@update')->name('admin.posts.update');
+        Route::get('/{post}/confirm', 'PostsController@confirm')->name('admin.posts.confirm');
+        Route::delete('/{post}', 'PostsController@destroy')->name('admin.posts.delete');
     });
 });
 

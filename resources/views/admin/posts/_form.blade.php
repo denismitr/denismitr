@@ -1,11 +1,11 @@
-<div class="field">
-    @isset($project)
-        <input type="hidden" name="_id" value="{{ $project->id }}">
-    @endisset
+@isset($post)
+    <input type="hidden" name="_id" value="{{ $post->id }}">
+@endisset
 
+<div class="field">
     <label class="label">Name</label>
     <div class="control has-icons-right">
-        <input class="input{{  $errors->first('name') ? ' is-danger' : '' }}" name="name" type="text" value="{{ old('name', $project->name ?? null) }}">
+        <input class="input{{  $errors->first('name') ? ' is-danger' : '' }}" name="name" type="text" value="{{ old('name', $post->name ?? null) }}">
         @if($errors->has('name'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -18,104 +18,106 @@
 </div>
 
 <div class="field">
-    <label class="label">Description RU</label>
+    <label class="label">Slug</label>
     <div class="control has-icons-right">
-        <textarea
-                class="textarea{{  $errors->first('description_ru') ? ' is-danger' : '' }}"
-                name="description_ru" type="text"
-        >{{ old('description_ru', $project->description_ru ?? null) }}</textarea>
-        @if($errors->has('description_ru'))
+        <input class="input{{  $errors->first('slug') ? ' is-danger' : '' }}" name="slug" type="text" value="{{ old('slug', $post->slug ?? null) }}">
+        @if($errors->has('slug'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </p>
         @endif
     </div>
-    @if($errors->has('description_ru'))
-        <p class="help is-danger">{{ $errors->first('description_ru') }}</p>
+    @if($errors->has('slug'))
+        <p class="help is-danger">{{ $errors->first('slug') }}</p>
+    @endif
+</div>
+
+<div>
+    <label class="label">Post body</label>
+    <input id="body" value="{{ old('body', $post->body ?? null) }}" type="hidden" name="body">
+    @if($errors->has('body'))
+        <p class="help is-danger">{{ $errors->first('body') }}</p>
     @endif
 </div>
 
 <div class="field">
-    <label class="label">Description EN</label>
+    <label class="label">Language</label>
     <div class="control has-icons-right">
-        <textarea
-                class="textarea{{  $errors->first('description_en') ? ' is-danger' : '' }}"
-                name="description_en" type="text"
-        >{{ old('description_en', $project->description_en ?? null) }}</textarea>
-        @if($errors->has('description_en'))
+        <div class="select{{  $errors->first('lang') ? ' is-danger' : '' }}">
+            <select name="lang">
+                <option value="ru" {{ old('lang', $post->lang ?? null) === 'ru' ? 'selected' : null }}>RU</option>
+                <option value="en" {{ old('lang', $post->lang ?? null) === 'en' ? 'selected' : null }}>EN</option>
+            </select>
+        </div>
+        @if($errors->has('lang'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </p>
         @endif
     </div>
-    @if($errors->has('description_en'))
-        <p class="help is-danger">{{ $errors->first('description_en') }}</p>
+    @if($errors->has('lang'))
+        <p class="help is-danger">{{ $errors->first('lang') }}</p>
+    @endif
+</div>
+<br>
+<div class="field">
+    <label class="label">Part</label>
+    <div class="control has-icons-right">
+        <input class="input{{  $errors->first('part') ? ' is-danger' : '' }}" name="part" type="number" value="{{ old('part', $post->part ?? 1) }}">
+        @if($errors->has('part'))
+            <p class="icon is-small is-right">
+                <i class="fas fa-exclamation-triangle"></i>
+            </p>
+        @endif
+    </div>
+    @if($errors->has('part'))
+        <p class="help is-danger">{{ $errors->first('part') }}</p>
     @endif
 </div>
 
 <div class="field">
-    <label class="label">URL</label>
+    <label class="label">Parent</label>
     <div class="control has-icons-right">
-        <input class="input{{  $errors->first('url') ? ' is-danger' : '' }}" name="url" type="url" value="{{ old('url', $project->url ?? null) }}">
-        @if($errors->has('url'))
+        <div class="select{{  $errors->first('parent_id') ? ' is-danger' : '' }}">
+            <select name="parent_id">
+                <option value="">No parent post</option>
+                @foreach($posts as $parentPost)
+                    <option value="{{ $parentPost->id }}" {{ old('parent_id', $post->parent_id ?? null) === $parentPost->id ? 'selected' : null }}>{{ $parentPost->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        @if($errors->has('parent_id'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </p>
         @endif
     </div>
-    @if($errors->has('url'))
-        <p class="help is-danger">{{ $errors->first('url') }}</p>
+    @if($errors->has('parent_id'))
+        <p class="help is-danger">{{ $errors->first('parent_id') }}</p>
     @endif
 </div>
+<br><br>
 
 <div class="field">
-    <label class="label">Color</label>
+    <label class="label">Post topics</label>
     <div class="control has-icons-right">
-        <input class="input{{  $errors->first('color') ? ' is-danger' : '' }}" name="color" type="color" value="{{ old('color', $project->color ?? null) }}">
-        @if($errors->has('color'))
+        <div class="select is-block is-multiple{{ $errors->first('parent_id') ? ' is-danger' : '' }}">
+            <select multiple size="10" name="topics[]">
+                @foreach($topics as $topic)
+                    <option
+                            value="{{ $topic->id }}"
+                            {{ in_array($topic->id, old('topics', $post->topic_ids ?? [])) ? 'selected' : null }}
+                    >{{ $topic->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        @if($errors->has('parent_id'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
             </p>
         @endif
     </div>
-    @if($errors->has('color'))
-        <p class="help is-danger">{{ $errors->first('color') }}</p>
-    @endif
-</div>
-
-<div class="field">
-    <br>
-    <label class="label">Picture</label>
-    @isset($project)
-        <small>Currently</small>
-        <figure class="image is-128x128">
-            <img src="{{ $project->getPicture() }}">
-        </figure>
-    @endisset
-    <div class="control has-icons-right">
-        <input class="input{{  $errors->first('picture') ? ' is-danger' : '' }}" name="picture" type="file" value="{{ old('picture', $project->picture ?? null) }}">
-        @if($errors->has('picture'))
-            <p class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-            </p>
-        @endif
-    </div>
-    @if($errors->has('picture'))
-        <p class="help is-danger">{{ $errors->first('picture') }}</p>
-    @endif
-</div>
-
-<div class="field">
-    <label class="label">Priority</label>
-    <div class="control has-icons-right">
-        <input class="input{{  $errors->first('priority') ? ' is-danger' : '' }}" name="priority" type="number" value="{{ old('priority', $project->priority ?? null) }}">
-        @if($errors->has('priority'))
-            <p class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-            </p>
-        @endif
-    </div>
-    @if($errors->has('priority'))
-        <p class="help is-danger">{{ $errors->first('priority') }}</p>
+    @if($errors->has('parent_id'))
+        <p class="help is-danger">{{ $errors->first('parent_id') }}</p>
     @endif
 </div>

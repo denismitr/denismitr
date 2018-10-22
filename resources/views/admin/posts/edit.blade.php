@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('head')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+@endsection
+
 @section('content')
     <section>
         <div class="card">
@@ -26,4 +30,12 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <script>
+        var md = new SimpleMDE({ element: document.getElementById("body") });
+    </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class Post
@@ -11,10 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $slug
  * @property string $body
+ * @property Collection $topics
+ * @property array $topic_ids
  */
 class Post extends Model
 {
     protected $guarded = ['id'];
+
+    protected $appends = ['topic_ids'];
 
     public function getRouteKeyName()
     {
@@ -38,6 +43,15 @@ class Post extends Model
         $this->update([
             'published_at' => null
         ]);
+    }
+
+    public function getTopicIdsAttribute()
+    {
+        if ($this->topics->count() === 0) {
+            return [];
+        }
+
+        return $this->topics->pluck('id')->toArray();
     }
 
     /**
