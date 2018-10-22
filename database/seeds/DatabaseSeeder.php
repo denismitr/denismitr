@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'topics',
             'projects',
             'posts',
+            'post_topic',
             'users',
             'auth_groups',
             'auth_group_permissions',
@@ -46,5 +47,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(TopicsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
     }
 }

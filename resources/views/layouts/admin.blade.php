@@ -74,6 +74,9 @@
                                 <a href="{{ route('admin.topics.index') }}" class="navbar-item">
                                     Topics
                                 </a>
+                                <a href="{{ route('admin.posts.index') }}" class="navbar-item">
+                                    Posts
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -117,6 +120,9 @@
                                     <ul class="menu-list">
                                         <li>
                                             <a href="{{ route('admin.topics.index') }}">Topics</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.posts.index') }}">Posts</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('admin.projects.index') }}">Projects</a>

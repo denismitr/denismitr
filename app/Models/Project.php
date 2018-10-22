@@ -59,7 +59,27 @@ class Project extends Model
     {
         return Str::contains($this->picture, ['http://', 'https://']);
     }
-    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Actions
+    |--------------------------------------------------------------------------
+    */
+
+    public function publish()
+    {
+        $this->update([
+            'published_at' => now()
+        ]);
+    }
+
+    public function unpublish()
+    {
+        $this->update([
+            'published_at' => null
+        ]);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Scopes

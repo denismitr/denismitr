@@ -12,4 +12,12 @@ class Topic extends Model
     {
         return 'slug';
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

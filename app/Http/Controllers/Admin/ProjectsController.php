@@ -43,7 +43,11 @@ class ProjectsController extends Controller
         }
 
         try {
-            Project::create($this->getData($request, $filename));
+            $project = Project::create($this->getData($request, $filename));
+
+            if (!!$request->publish) {
+                $project->publish();
+            }
         } catch (\Throwable $t) {
             CriticalErrorOccurred::dispatch($t);
 
