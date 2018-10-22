@@ -25,7 +25,7 @@ class UpdateTopicRequest extends FormRequest
      */
     public function rules()
     {
-        $topic = Topic::whereSlug($this->slug)->firstOrFail();
+        $topic = Topic::findOrFail($this->_id);
 
         return [
             'name' => [

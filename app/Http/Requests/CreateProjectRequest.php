@@ -24,7 +24,7 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique|min:2',
+            'name' => 'required|unique:projects|min:2',
             'description_ru' => 'nullable|min:3|max:500',
             'description_en' => 'nullable|min:3|max:500',
             'url' => 'nullable|url',

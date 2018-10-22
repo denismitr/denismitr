@@ -6,14 +6,12 @@
             <form action="{{ route('admin.topics.update', $topic->slug) }}" method="POST" class="card-content">
                 <p class="title">Edit the topic</p>
 
-                @if(session()->has('topic.success'))
-                    <div class="notification is-success">
-                        {{ session()->get('topic.success') }}
-                    </div>
-                @endif
+                @include('admin._notification')
 
                 @csrf
                 @method('PUT')
+
+                <input type="hidden" name="_id" value="{{ $topic->id }}">
 
                 <div class="field">
                     <label class="label">Name</label>

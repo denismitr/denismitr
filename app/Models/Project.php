@@ -28,7 +28,7 @@ class Project extends Model
 
         static::deleted(function($project) {
             if (!empty($project->picture)) {
-                Storage::disk('public')->delete($project->picture);
+                Storage::disk($project->disk)->delete($project->picture);
             }
         });
     }

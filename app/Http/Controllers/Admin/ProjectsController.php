@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\CriticalErrorOccurred;
-use App\Exceptions\ImageOptimizationError;
 use App\Helpers\Image;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -34,7 +33,7 @@ class ProjectsController extends Controller
                 ->encode()
                 ->save();
 
-            $filename = $request->file('picture')->store('projects', 'public');
+            $filename = $request->file('picture')->store('projects', config('services.images.disk'));
         } catch (\Throwable $t) {
             CriticalErrorOccurred::dispatch($t);
 
@@ -78,7 +77,7 @@ class ProjectsController extends Controller
                     ->encode()
                     ->save();
 
-                $filename = $request->file('picture')->store('projects', 'public');
+                $filename = $request->file('picture')->store('projects', config('services.images.disk'));
                 Storage::disk('public')->delete($project->picture);
             }
 
@@ -129,12 +128,13 @@ class ProjectsController extends Controller
     protected function getData(Request $request, ?string $filename): array
     {
         $data = [
-            "name" => $request->name,
-            "description_ru" => $request->description_ru,
-            "description_en" => $request->description_en,
-            "url" => $request->url,
-            "color" => $request->color,
-            "priority" => $request->priority,
+            'name' => $request->name,
+            'description_ru' => $request->description_ru,
+            'description_en' => $request->description_en,
+            'url' => $request->url,
+            'color' => $request->color,
+            'priority' => $request->priority,
+            'disk' => config('services.images.disk'),
         ];
 
         if ($filename) {

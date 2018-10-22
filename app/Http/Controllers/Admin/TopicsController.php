@@ -28,7 +28,7 @@ class TopicsController extends Controller
             'slug' => str_slug($request->name),
         ]);
 
-        session()->flash('topic.success', "Topic {$request->name} created!");
+        session()->flash('success', "Topic {$request->name} created!");
 
         return back();
     }
@@ -42,7 +42,7 @@ class TopicsController extends Controller
     {
         $topic->update(['name' => $request->name]);
 
-        session()->flash('topic.success', "Topic {$request->name} updated!");
+        session()->flash('success', "Topic {$request->name} updated!");
 
         return redirect()->route('admin.topics.index');
     }
@@ -74,7 +74,7 @@ class TopicsController extends Controller
     {
         $topic->delete();
 
-        session()->flash('topic.success', "Topic {$topic->name} deleted!");
+        session()->flash('success', "Topic {$topic->name} deleted!");
 
         return redirect()->route('admin.topics.index');
     }

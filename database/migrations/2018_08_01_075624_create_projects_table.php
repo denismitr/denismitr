@@ -23,6 +23,7 @@ class CreateProjectsTable extends Migration
             $table->text('description_ru')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->string('picture')->nullable()->unique();
+            $table->string('disk', '50')->default('public');
             $table->string('color', 10);
             $table->unsignedTinyInteger('priority')->default(0);
             $table->timestamps();

@@ -6,11 +6,7 @@
             <form action="{{ route('admin.topics.store') }}" method="POST" class="card-content">
                 <p class="title">Create a topic</p>
 
-                @if(session()->has('topic.success'))
-                    <div class="notification is-success">
-                        {{ session()->get('topic.success') }}
-                    </div>
-                @endif
+                @include('admin._notification')
 
                 @csrf
 
