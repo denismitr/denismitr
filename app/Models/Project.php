@@ -4,7 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
+/**
+ * Class Project
+ * @package App\Models
+ * @property string $picture
+ */
 class Project extends Model
 {
     protected $guarded = ['id'];
@@ -13,9 +19,30 @@ class Project extends Model
         'published_at',
     ];
 
+    public static function boot()
+    {
+        static::creating(function($project) {
+            $project->slug = str_slug($project->name);
+        });
+    }
+
     public function getRouteKey()
     {
-        return $this->id;
+        return $this->slug;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function getPicture()
+    {
+        if (Str::contains($this->picture, ['http://', 'https://'])) {
+            return $this->picture;
+        }
+
+        return asset('storage/'.$this->picture);
     }
     
     /*

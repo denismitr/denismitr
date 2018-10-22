@@ -16,12 +16,13 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('url')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_ru')->nullable();
             $table->timestamp('published_at')->nullable();
-            $table->string('picture')->nullable();
+            $table->string('picture')->nullable()->unique();
             $table->string('color', 10);
             $table->unsignedTinyInteger('priority')->default(0);
             $table->timestamps();

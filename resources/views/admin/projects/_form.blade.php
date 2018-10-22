@@ -19,7 +19,7 @@
         <textarea
                 class="textarea{{  $errors->first('description_ru') ? ' is-danger' : '' }}"
                 name="description_ru" type="text"
-        >{{ $project->description_ru ?? null }}</textarea>
+        >{{ old('description_ru', $project->description_ru ?? null) }}</textarea>
         @if($errors->has('description_ru'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -37,7 +37,7 @@
         <textarea
                 class="textarea{{  $errors->first('description_en') ? ' is-danger' : '' }}"
                 name="description_en" type="text"
-        >{{ $project->description_en ?? null }}</textarea>
+        >{{ old('description_en', $project->description_en ?? null) }}</textarea>
         @if($errors->has('description_en'))
             <p class="icon is-small is-right">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -80,7 +80,14 @@
 </div>
 
 <div class="field">
+    <br>
     <label class="label">Picture</label>
+    @isset($project)
+        <small>Currently</small>
+        <figure class="image is-128x128">
+            <img src="{{ $project->getPicture() }}">
+        </figure>
+    @endisset
     <div class="control has-icons-right">
         <input class="input{{  $errors->first('picture') ? ' is-danger' : '' }}" name="picture" type="file" value="{{ old('picture', $project->picture ?? null) }}">
         @if($errors->has('picture'))

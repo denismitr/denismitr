@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CriticalErrorOccurred;
+use App\Exceptions\ImageOptimizationError;
+use App\Helpers\Image;
 use App\Http\Requests\CreateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -21,19 +24,32 @@ class ProjectsController extends Controller
         return view('admin.projects.create');
     }
 
-    public function store(CreateProjectRequest $request)
+    public function store(CreateProjectRequest $request, Image $image)
     {
-        $filename = $request->file('picture')->store('projects', 'public');
+        try {
+            $image->fromRequest($request, 'picture')
+                ->resize(100)
+                ->encode()
+                ->save();
 
-        Project::create([
-            "name" => "mysql",
-            "description_ru" => "adsad",
-            "description_en" => "asdsad",
-            "url" => "http://google.com",
-            "color" => "#000000",
-            'picture' => $filename,
-            "priority" => "23",
-        ]);
+            $filename = $request->file('picture')->store('projects', 'public');
+        } catch (\Throwable $t) {
+            CriticalErrorOccurred::dispatch($t);
+
+            return back()->withErrors([
+                'picture' => [$t->getMessage()]
+            ])->withInput();
+        }
+
+        try {
+            Project::create($this->getData($request, $filename));
+        } catch (\Throwable $t) {
+            CriticalErrorOccurred::dispatch($t);
+
+            session()->flash('project.error', $t->getMessage());
+
+            return back()->withInput();
+        }
 
         session()->flash('project.success', "Project {$request->name} created.");
 
@@ -43,5 +59,28 @@ class ProjectsController extends Controller
     public function edit(Project $project)
     {
         return view('admin.projects.edit', ['project' => $project]);
+    }
+
+    /**
+     * @param Request $request
+     * @param null|string $filename
+     * @return array
+     */
+    protected function getData(Request $request, ?string $filename): array
+    {
+        $data = [
+            "name" => $request->name,
+            "description_ru" => $request->description_ru,
+            "description_en" => $request->description_en,
+            "url" => $request->url,
+            "color" => $request->color,
+            "priority" => $request->priority,
+        ];
+
+        if ($filename) {
+            $data = array_merge($data, ['picture' => $filename]);
+        }
+
+        return $data;
     }
 }

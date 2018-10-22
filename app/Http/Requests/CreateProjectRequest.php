@@ -30,7 +30,7 @@ class CreateProjectRequest extends FormRequest
             'url' => 'nullable|url',
             'color' => 'required',
             'priority' => 'required|numeric|max:100',
-            'picture' => 'nullable|file',
+            'picture' => 'nullable|file|mimes:jpeg,png',
         ];
     }
 }

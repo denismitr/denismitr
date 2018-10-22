@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Helpers\Image;
 use App\Models\Business;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\ImageManager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(Image::class, function($app) {
+            return new Image(
+                new ImageManager([
+                    'driver' => $app['config']['services.images.driver']
+                ])
+            );
+        });
     }
 }
