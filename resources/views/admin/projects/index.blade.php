@@ -17,6 +17,13 @@
                         <p><strong>{{ $project->name }}</strong></p>
                         <p>{{ $project->url }}</p>
                         <p>Priority: {{ $project->priority }}</p>
+                        <p>
+                            @if($project->isPublished())
+                                <span class="tag is-success is-small">Publised: {{ $project->published_at->toDateString() }}</span>
+                            @else
+                                <span class="tag is-danger is-small">Not published</span>
+                            @endif
+                        </p>
                     </div>
                     <nav class="level is-media">
                         <a class="button is-warning" href="{{ route('admin.projects.edit', $project->getRouteKey()) }}">Edit</a>

@@ -88,6 +88,12 @@ class ProjectsController extends Controller
             $project->update(
                 $this->getData($request, $filename ?? null)
             );
+
+            if (!!$request->publish) {
+                $project->publish();
+            } else {
+                $project->unpublish();
+            }
         } catch (\Throwable $t) {
             CriticalErrorOccurred::dispatch($t);
 

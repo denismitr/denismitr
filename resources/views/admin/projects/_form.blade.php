@@ -119,3 +119,13 @@
         <p class="help is-danger">{{ $errors->first('priority') }}</p>
     @endif
 </div>
+
+<br><br>
+<label class="checkbox">
+    <input type="checkbox" name="publish" {{ old('publish', $post->published_at ?? null) ? 'checked' : null }}>
+    Published
+</label>
+@if($errors->has('publish'))
+    <p class="help is-danger">{{ $errors->first('publish') }}</p>
+@endif
+<br><br>

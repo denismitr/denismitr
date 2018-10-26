@@ -3,19 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
-class UpdatePostRequest extends FormRequest
+class UpdatePostRequest extends CreatePostRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,8 +15,9 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        return array_merge(parent::rules(), [
+            'name' => ['required', Rule::unique('posts', 'name')->ignore($this->_id)],
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($this->_id)],
+        ]);
     }
 }

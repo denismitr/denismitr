@@ -18,7 +18,7 @@ class UpdateProjectRequest extends CreateProjectRequest
         $project = Project::findOrFail($this->_id);
 
         return array_merge(parent::rules(), [
-            'name' => ['required', Rule::unique('projects')->ignore($project->id), 'min:2'],
+            'name' => ['required', Rule::unique('projects', 'name')->ignore($project->id), 'min:2'],
             'picture' => 'nullable|file|mimes:jpeg,png'
         ]);
     }

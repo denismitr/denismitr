@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
  */
 class Project extends Model
 {
+    use Publishable;
+
     protected $guarded = ['id'];
 
     protected $dates = [
@@ -60,25 +62,6 @@ class Project extends Model
         return Str::contains($this->picture, ['http://', 'https://']);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions
-    |--------------------------------------------------------------------------
-    */
-
-    public function publish()
-    {
-        $this->update([
-            'published_at' => now()
-        ]);
-    }
-
-    public function unpublish()
-    {
-        $this->update([
-            'published_at' => null
-        ]);
-    }
 
     /*
     |--------------------------------------------------------------------------

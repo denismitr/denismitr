@@ -27,7 +27,9 @@ class CreatePostRequest extends FormRequest
             'name' => 'required|unique:posts,name',
             'slug' => 'required|unique:posts,slug',
             'body' => 'required|min:3',
-            'published_at' => 'nullable|boolean',
+            'parent_id' => 'nullable|exists:posts,id',
+            'part' => 'nullable|numeric',
+            'publish' => 'nullable',
             'lang' => 'required|in:ru,en'
         ];
     }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CriticalErrorOccurred;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -42,28 +44,74 @@ class PostsController extends Controller
         ]);
     }
 
+    /**
+     * @param CreatePostRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreatePostRequest $request)
     {
-        $post = Post::create($this->getData($request));
+        try {
+            /** @var Post $post */
+            $post = Post::create($this->getData($request));
+
+            if (!empty($request->topics)) {
+                $post->topics()->attach($request->topics);
+            }
+        } catch (\Throwable $t) {
+            CriticalErrorOccurred::dispatch($t);
+            session()->flash('error', $t->getMessage());
+            return back()->withInput();
+        }
 
         if (!!$request->publish) {
             $post->publish();
         }
 
-        if (!empty($request->topics)) {
-            $post->topics()->attach($request->topics);
-        }
+        session()->flash('success', 'Post created!');
 
         return redirect()->route('admin.posts.index');
     }
 
-    protected function getData(Request $request)
+    /**
+     * @param UpdatePostRequest $request
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UpdatePostRequest $request, Post $post)
+    {
+        try {
+            $post->update($this->getData($request));
+
+            if (!empty($request->topics)) {
+                $post->topics()->sync($request->topics);
+            }
+        } catch (\Throwable $t) {
+            CriticalErrorOccurred::dispatch($t);
+            session()->flash('error', $t->getMessage());
+            return back()->withInput();
+        }
+
+        if (!!$request->publish) {
+            $post->publish();
+        } else {
+            $post->unpublish();
+        }
+
+        session()->flash('success', 'Post updated!');
+
+        return redirect()->route('admin.posts.index');
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    protected function getData(Request $request): array
     {
         return [
             'name' => $request->name,
             'slug' => $request->slug,
             'body' => $request->body,
-            'published_at' => $request->published_at ? now() : null,
             'lang' => $request->lang,
             'part' => $request->part,
             'parent_id' => $request->parent_id,

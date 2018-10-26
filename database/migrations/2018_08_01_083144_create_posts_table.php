@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->text('body');
             $table->enum('lang', ['en', 'ru']);
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
             $table->unsignedInteger('claps')->default(0);
 
             $table->unique('slug');

@@ -18,8 +18,15 @@
                         <p>
                             Topics:
                             @foreach($post->topics as $topic)
-                                <span class="tag is-info is-medium">{{ $topic->name }}</span>
+                                <span class="tag is-info is-small">{{ $topic->name }}</span>
                             @endforeach
+                        </p>
+                        <p>
+                            @if($post->isPublished())
+                                <span class="tag is-success is-small">Publised: {{ $post->published_at->toDateString() }}</span>
+                            @else
+                                <span class="tag is-danger is-small">Not published</span>
+                            @endif
                         </p>
                     </div>
                     <br>

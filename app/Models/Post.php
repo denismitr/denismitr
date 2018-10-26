@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -14,12 +15,17 @@ use Illuminate\Support\Collection;
  * @property string $body
  * @property Collection $topics
  * @property array $topic_ids
+ * @property Carbon $published_at
  */
 class Post extends Model
 {
+    use Publishable;
+
     protected $guarded = ['id'];
 
     protected $appends = ['topic_ids'];
+
+    protected $dates = ['published_at'];
 
     public function getRouteKeyName()
     {
@@ -29,20 +35,6 @@ class Post extends Model
     public function getRouteKey()
     {
         return $this->slug;
-    }
-
-    public function publish()
-    {
-        $this->update([
-            'published_at' => now()
-        ]);
-    }
-
-    public function unpublish()
-    {
-        $this->update([
-            'published_at' => null
-        ]);
     }
 
     public function getTopicIdsAttribute()
