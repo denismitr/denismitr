@@ -1,13 +1,13 @@
 @if ($paginator->hasPages())
-    <ul class="pagination" role="navigation">
+    <ul class="flex list-reset border border-white rounded w-auto font-sans" role="navigation">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+            <li aria-disabled="true" aria-label="@lang('pagination.previous')">
+                <span class="block text-grey-dark bg-transparent border-r border-white px-3 py-2" aria-hidden="true">@lang('pagination.previous')</span>
             </li>
         @else
             <li class="page-item">
-                <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                <a class="block text-grey-dark bg-transparent border-r border-grey px-3 py-2" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">@lang('pagination.previous')</a>
             </li>
         @endif
 

@@ -1,23 +1,31 @@
 @extends('layouts.front')
 
+@section('keyboard')
+    @include('front.components._keyboard')
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Projects</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+    <div class="w-full bg-grey-light">
+        <article class="container mx-auto py-2">
+            @if(app()->isLocale('ru'))
+                <h3 class="border-b-2 border-white border-solid py-2 mb-2 text-grey text-4xl">
+                    Мои <span class="text-red">новые</span> проекты
+                </h3>
+            @else
+                <h3 class="border-b-2 border-white border-solid py-2 mb-2 text-grey text-4xl">
+                    My <span class="text-red">latest</span> projects
+                </h3>
+            @endif
+        </article>
+        <section class="w-full">
+            <div class="container mx-auto py-2">
+                @foreach($projects as $project)
+                    @include('front.components._project')
+                @endforeach
             </div>
-        </div>
+            <div class="container mx-auto py-1">
+                {{ $projects->links('pagination.tailwind') }}
+            </div>
+        </section>
     </div>
-</div>
 @endsection

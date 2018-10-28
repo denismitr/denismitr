@@ -29,7 +29,11 @@ class FrontPagesController extends Controller
 
     public function projects()
     {
-        return view('front.projects');
+        $projects = Project::published()
+            ->important()
+            ->paginate(5);
+
+        return view('front.projects', compact('projects'));
     }
 
     public function tech()

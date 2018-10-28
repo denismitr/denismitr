@@ -1,4 +1,4 @@
-<article class="w-full lg:flex my-20">
+<article class="w-full lg:flex mb-10">
     <div class="h-48 lg:h-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
         <img class="max-h-full max-w-full" src="{{ $project->getPicture() }}" alt="{{ $project->name }}">
     </div>
