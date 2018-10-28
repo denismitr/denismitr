@@ -46,6 +46,23 @@ class Post extends Model
         return $this->topics->pluck('id')->toArray();
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Scopes
+    |--------------------------------------------------------------------------
+    */
+
+    public function scopeOnlyParents(Builder $builder)
+    {
+        return $builder->whereNull('parent_id');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

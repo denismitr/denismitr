@@ -23,6 +23,6 @@
         </p>
     </article>
 </div>
-@include('front.components.activities')
-@include('front.components.latest-projects')
+@include('front.components._activities')
+@include('front.components._latest-projects')
 @endsection

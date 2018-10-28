@@ -21,7 +21,7 @@
         "lodash": "^4.17.4",
         "node-sass": "^4.9.4",
         "popper.js": "^1.12",
-        "tailwindcss": "^0.6.4",
+        "tailwindcss": "^0.6.6",
         "trix": "^1.0.0",
         "vue": "^2.5.7"
     }

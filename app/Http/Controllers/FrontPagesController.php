@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class FrontPagesController extends Controller
 {
     public function home()
     {
-        return view('front.home');
+        $projects = Project::published()
+            ->important()
+            ->take(2)
+            ->get();
+
+        return view('front.home', compact('projects'));
     }
 
     public function blog()

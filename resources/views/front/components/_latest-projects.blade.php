@@ -10,4 +10,11 @@
             </h3>
         @endif
     </article>
+    <section class="w-full">
+        <div class="container mx-auto py-5">
+            @foreach($projects as $project)
+                @include('front.components._project')
+            @endforeach
+        </div>
+    </section>
 </div>
