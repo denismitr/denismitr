@@ -69,6 +69,12 @@
             @yield('keyboard')
             @yield('content')
         </main>
+
+        <footer class="flex justify-center content-center border-t-4 border-red-dark bg-grey-darkest py-16">
+            <div class="text-center w-full">
+                <strong class="text-orange">&COPY; 2016 - {{ date('Y') }} @lang('text.name')</strong>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

@@ -23,7 +23,7 @@
                     @include('front.components._project')
                 @endforeach
             </div>
-            <div class="container mx-auto py-1">
+            <div class="container mx-auto py-5">
                 {{ $projects->links('pagination.tailwind') }}
             </div>
         </section>
