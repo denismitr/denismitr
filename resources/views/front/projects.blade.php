@@ -8,11 +8,11 @@
     <div class="w-full bg-grey-light">
         <article class="container mx-auto py-2">
             @if(app()->isLocale('ru'))
-                <h3 class="border-b-2 border-white border-solid py-2 mb-2 text-grey text-4xl">
+                <h3 class="border-b border-white border-solid py-2 mb-2 text-grey text-4xl">
                     Мои <span class="text-red">новые</span> проекты
                 </h3>
             @else
-                <h3 class="border-b-2 border-white border-solid py-2 mb-2 text-grey text-4xl">
+                <h3 class="border-b border-white border-solid py-2 mb-2 text-grey text-4xl">
                     My <span class="text-red">latest</span> projects
                 </h3>
             @endif

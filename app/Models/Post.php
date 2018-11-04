@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -52,9 +53,19 @@ class Post extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function scopeOnlyParents(Builder $builder)
+    public function scopeTopLevel(Builder $builder)
     {
         return $builder->whereNull('parent_id');
+    }
+
+    public function scopePublished(Builder $builder)
+    {
+        return $builder->whereNotNull('published_at');
+    }
+
+    public function scopeRecentlyPublished(Builder $builder)
+    {
+        return $builder->whereNotNull('published_at')->orderBy('published_at', 'DESC');
     }
 
     /*

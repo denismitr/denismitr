@@ -56,7 +56,7 @@
                         <div class="md:w-full text-sm md:flex justify-end">
                             <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.home') }}">{{ __('Home') }}</a>
                             <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.tech') }}">{{ __('Tech stack') }}</a>
+                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.tech') }}">{{ __('Technologies') }}</a>
                             <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
                             <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
                         </div>

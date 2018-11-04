@@ -15,7 +15,7 @@
         </div>
         <p>
             <a class="bg-transparent hover:bg-red text-red-dark hover:text-white font-semibold py-4 px-4 border border-red-dark hover:border-transparent rounded" href="{{ $project->url }}">
-                {{ __('Visit the projects URL') }}
+                {{ __('Visit the project URL') }}
             </a>
         </p>
     </div>

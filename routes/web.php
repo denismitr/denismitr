@@ -13,10 +13,15 @@
 
 // Front front
 Route::get('/', 'FrontPagesController@home')->name('front.home');
-Route::get('/blog', 'FrontPagesController@blog')->name('front.blog');
 Route::get('/contact', 'FrontPagesController@contact')->name('front.contact');
 Route::get('/projects', 'FrontPagesController@projects')->name('front.projects');
 Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
+
+Route::group(['prefix' => 'blog'], function() {
+    Route::get('/', 'BlogController@index')->name('front.blog');
+    Route::get('/topics/{topic}', 'BlogController@topic')->name('front.blog.topic');
+    Route::get('/{post}', 'BlogController@post')->name('front.blog.post');
+});
 
 // Authentication Routes...
 Route::group(['middleware' => 'guest'], function() {
