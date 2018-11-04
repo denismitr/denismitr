@@ -10469,60 +10469,60 @@ label.panel-block:hover {
 }
 
 .columns.is-variable.is-0 {
-  --columnGap: 0;
+  --columnGap: 0rem;
 }
 
 @media screen and (max-width: 768px) {
   .columns.is-variable.is-0-mobile {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 769px), print {
   .columns.is-variable.is-0-tablet {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1087px) {
   .columns.is-variable.is-0-tablet-only {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (max-width: 1087px) {
   .columns.is-variable.is-0-touch {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 1088px) {
   .columns.is-variable.is-0-desktop {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 1088px) and (max-width: 1279px) {
   .columns.is-variable.is-0-desktop-only {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .columns.is-variable.is-0-widescreen {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1471px) {
   .columns.is-variable.is-0-widescreen-only {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 
 @media screen and (min-width: 1472px) {
   .columns.is-variable.is-0-fullhd {
-    --columnGap: 0;
+    --columnGap: 0rem;
   }
 }
 

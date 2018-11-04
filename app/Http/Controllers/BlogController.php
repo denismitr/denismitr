@@ -13,7 +13,7 @@ class BlogController extends Controller
         $topics = Topic::orderBy('name')->get();
         $posts = Post::topLevel()->recentlyPublished()->get();
 
-        return view('front.blog', [
+        return view('front.blog.index', [
             'posts' => $posts,
             'topics' => $topics,
         ]);

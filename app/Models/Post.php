@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\MD;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -24,9 +25,11 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
-    protected $appends = ['topic_ids'];
+    protected $appends = ['topic_ids', 'topic_names', 'human_date'];
 
     protected $dates = ['published_at'];
+
+    protected $with = ['topics'];
 
     public function getRouteKeyName()
     {
@@ -45,6 +48,33 @@ class Post extends Model
         }
 
         return $this->topics->pluck('id')->toArray();
+    }
+
+    public function getTopicNamesAttribute()
+    {
+        if ($this->topics->count() === 0) {
+            return '';
+        }
+
+        return implode(', ', $this->topics->pluck('name')->toArray());
+    }
+
+    public function description(int $limit = 120)
+    {
+        return str_limit(MD::line($this->body), $limit);
+    }
+
+    public function getHumanDateAttribute()
+    {
+        if (!$this->published_at) {
+            return null;
+        }
+
+        if (app()->isLocale('ru')) {
+            return $this->published_at->toDateString();
+        }
+
+        return $this->published_at->toDateString();
     }
 
     /*

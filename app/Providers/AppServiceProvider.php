@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageManager;
+use Parsedown;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,12 @@ class AppServiceProvider extends ServiceProvider
                     'driver' => $app['config']['services.images.driver']
                 ])
             );
+        });
+
+        $this->app->bind('md', function() {
+            $parser = new Parsedown();
+
+            return $parser;
         });
     }
 }

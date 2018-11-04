@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c16282506afd972e4e45b1a372bc7fd5",
+    "content-hash": "71f9ba5cee4b42d17cc12aba422095de",
     "packages": [
         {
             "name": "denismitr/laravel-permissions",
