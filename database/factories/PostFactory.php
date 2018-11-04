@@ -3,14 +3,25 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Post::class, function (Faker $faker) {
-    $name = $faker->words(2, true);
+    $name = $faker->unique()->words(2, true);
 
     return [
-        'name' => $name,
+        'name' => ucfirst($name),
         'slug' => str_slug($name),
         'body' => $faker->text,
         'claps' => $faker->numberBetween(0, 2000),
         'lang' => array_random(['en', 'ru']),
+        'parent_id' => null,
+        'part' => 1,
+    ];
+});
+
+$factory->state(\App\Models\Post::class, 'child', function (Faker $faker) {
+    return [
+        'part' => mt_rand(2, 6),
+        'parent_id' => function() {
+            return factory(\App\Models\Post::class)->create()->id;
+        }
     ];
 });
 

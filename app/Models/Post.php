@@ -29,7 +29,7 @@ class Post extends Model
 
     protected $dates = ['published_at'];
 
-    protected $with = ['topics'];
+    protected $with = ['topics', 'parts'];
 
     public function getRouteKeyName()
     {
@@ -77,6 +77,14 @@ class Post extends Model
         return $this->published_at->toDateString();
     }
 
+    /**
+     * @return bool
+     */
+    public function hasParts(): bool
+    {
+        return $this->parts->count() > 0;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Scopes
@@ -110,5 +118,10 @@ class Post extends Model
     public function topics()
     {
         return $this->belongsToMany(Topic::class);
+    }
+
+    public function parts()
+    {
+        return $this->hasMany(Post::class, 'parent_id');
     }
 }
