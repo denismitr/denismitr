@@ -11,13 +11,13 @@
                 <div class="w-full md:w-2/3">
                     <article class="mb-20">
                         @if(app()->isLocale('ru'))
-                            <h3 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
+                            <h1 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
                                 Темы <span class="text-red">моего</span> блога
-                            </h3>
+                            </h1>
                         @else
-                            <h3 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
+                            <h1 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
                                 My <span class="text-red">blog</span> topics
-                            </h3>
+                            </h1>
                         @endif
 
                         <div>
@@ -34,13 +34,13 @@
 
                     <article>
                         @if(app()->isLocale('ru'))
-                            <h3 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
+                            <h2 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
                                 Статьи <span class="text-red">моего</span> блога
-                            </h3>
+                            </h2>
                         @else
-                            <h3 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
+                            <h2 class="border-b border-grey-light border-solid py-2 mt-2 mb-2 text-grey text-3xl font-sans">
                                 My <span class="text-red">blog</span> articles
-                            </h3>
+                            </h2>
                         @endif
 
                         @foreach($posts as $post)

@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Post::class, function (Faker $faker) {
-    $name = $faker->unique()->words(2, true);
+    $name = $faker->unique()->words(mt_rand(2, 4), true);
 
     return [
         'name' => ucfirst($name),
