@@ -8,7 +8,7 @@ $factory->define(\App\Models\Post::class, function (Faker $faker) {
     return [
         'name' => ucfirst($name),
         'slug' => str_slug($name),
-        'body' => $faker->text,
+        'body' => $faker->realText(2000),
         'claps' => $faker->numberBetween(0, 2000),
         'lang' => array_random(['en', 'ru']),
         'parent_id' => null,

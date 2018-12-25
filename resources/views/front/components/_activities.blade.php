@@ -44,11 +44,11 @@
                 <div class="max-w-sm overflow-hidden">
                     <h4 class="mb-3">
                         <a class="text-indigo-darker text-3xl hover:text-indigo-dark" href="{{ route('front.blog') }}">
-                            {{ __('Blog') }}
+                            @lang('blog.menu')
                         </a>
                     </h4>
                     <a class="block mb-3" href="{{ route('front.blog') }}">
-                        <img src="{{ asset('img/myblog.jpg') }}" alt="{{ __('Blog') }}">
+                        <img src="{{ asset('img/myblog.jpg') }}" alt="@lang('blog.menu')">
                     </a>
                     <p class="text-justify">
                         @lang('text.about_blog')

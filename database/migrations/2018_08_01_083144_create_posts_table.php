@@ -33,6 +33,9 @@ class CreatePostsTable extends Migration
                     ->on('posts')
                     ->onDelete('set null');
         });
+
+        DB::statement('CREATE FULLTEXT INDEX posts_name_idx ON posts (name);');
+        DB::statement('CREATE FULLTEXT INDEX posts_body_idx ON posts (body);');
     }
 
     /**

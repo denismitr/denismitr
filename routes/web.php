@@ -20,6 +20,7 @@ Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
 Route::group(['prefix' => 'blog'], function() {
     Route::get('/', 'BlogController@index')->name('front.blog');
     Route::get('/topics/{topic}', 'BlogController@topic')->name('front.blog.topic');
+    Route::get('/search', 'BlogController@search')->name('front.blog.search');
     Route::get('/{post}', 'BlogController@post')->name('front.blog.post');
 });
 
