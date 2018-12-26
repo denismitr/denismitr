@@ -32,6 +32,10 @@ Route::group(['middleware' => 'guest'], function() {
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
+    Route::post('/contacts', 'ContactsController@store');
+});
+
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');

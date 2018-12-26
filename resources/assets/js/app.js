@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('locale-select', require('./components/Locale.vue'));
+Vue.component('contact-form', require('./components/ContactForm'));
 
 const app = new Vue({
     el: '#app'

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Project;
+use App\Services\ContactHash;
 use Illuminate\Http\Request;
 
 class FrontPagesController extends Controller
@@ -22,9 +24,16 @@ class FrontPagesController extends Controller
         return view('front.blog');
     }
 
-    public function contact()
+    /**
+     * @param Request $request
+     * @param ContactHash $contactHash
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contact(Request $request, ContactHash $contactHash)
     {
-        return view('front.contact');
+        $sent = !!Contact::where('hash', $contactHash->fromRequest($request))->first();
+
+        return view('front.contact', ['sent' => $sent]);
     }
 
     public function projects()

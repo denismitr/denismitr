@@ -67,7 +67,7 @@
                                 </h4>
 
                                 <p class="text-grey mb-3">{{ $post->human_date }} | {{ $post->topic_names }}</p>
-                                <p>{{ $post->description(130) }}</p>
+                                <p>{!! $post->description(150) !!}</p>
                             </div>
                         @endforeach
                     </article>
