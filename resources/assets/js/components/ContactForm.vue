@@ -2,19 +2,25 @@
     <div class="mx-auto max-w-md">
         <div v-if="success || sent" class="p-4 bg-green-dark text-white mb-4" v-text="successMessage"></div>
         <div v-if="error" class="p-4 bg-red text-white mb-4" v-text="errorMessage"></div>
-        <form v-if="!sent && !success" @submit.prevent="onSubmit" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+        <div v-if="submitting" class="py-5">
+            <LdsSpinner/>
+        </div>
+        <form v-if="!sent && !success && !submitting" @submit.prevent="onSubmit" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" v-text="text.name.label"></label>
                 <input type="text" v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline">
+                <div class="text-red p-2 text-sm" v-if="!$v.form.name.minLength">{{ nameError }}</div>
             </div>
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" v-text="text.email.label"></label>
                 <input type="text" v-model="form.email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline">
+                <div class="text-red p-2 text-sm" v-if="!$v.form.email.email">{{ emailError }}</div>
             </div>
             <div class="mb-6">
                 <label class="block text-grey-darker text-sm font-bold mb-2" v-text="text.body.label"></label>
                 <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outlin" rows="14" v-model="form.body"></textarea>
             </div>
+            <hr>
             <div class="mb-4">
                 <button class="block w-full bg-red-dark hover:bg-red text-white uppercase text-lg mx-auto p-4 rounded">
                     {{ text.button }}
@@ -26,22 +32,14 @@
 
 <script>
     import axios from 'axios';
+    import LdsSpinner from './LdsSpinner';
+    import { validationMixin } from 'vuelidate';
+    import { required, minLength, email } from 'vuelidate/lib/validators'
 
     export default {
         name: "contact-form",
 
-        data: () => ({
-            form: {
-                name: '',
-                email: '',
-                body: '',
-            },
-
-            submitting: false,
-
-            success: false,
-            error: false,
-        }),
+        components: { LdsSpinner },
 
         computed: {
             successMessage() {
@@ -94,11 +92,42 @@
                     },
                     button: 'Submit',
                 };
-            }
+            },
+
+            nameError() {
+                return this.lang === 'ru' ?
+                    `Имя должно иметь не менее ${this.$v.form.name.$params.minLength.min} символов` :
+                    `Name must contain no less than ${this.$v.form.name.$params.minLength.min} characters`;
+            },
+
+            emailError() {
+                return this.lang === 'ru' ?
+                    `Email имеет неверный формат` :
+                    `Email must have a valid format`;
+            },
         },
+
+        created() {
+            if (this.sent) this.submitting = false;
+        },
+
+        data: () => ({
+            form: {
+                name: '',
+                email: '',
+                body: '',
+            },
+
+            submitting: true,
+
+            success: false,
+            error: false,
+        }),
 
         methods: {
             onSubmit() {
+                this.$v.$touch();
+                return console.log(this.$v);
                 if (!this.submitting) {
                     this.submitting = true;
 
@@ -116,6 +145,14 @@
             }
         },
 
+        mixins: [validationMixin],
+
+        mounted() {
+            setTimeout(() => {
+                this.submitting = false;
+            }, 800);
+        },
+
         props: {
             lang: {
                 type: String,
@@ -125,6 +162,14 @@
             sent: {
                 type: Boolean,
                 default: false,
+            }
+        },
+
+        validations: {
+            form: {
+                name: { required, minLength: minLength(3) },
+                email: { required, email },
+                body: { required, minLength: minLength(8) },
             }
         }
     }
