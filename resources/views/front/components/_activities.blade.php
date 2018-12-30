@@ -29,14 +29,14 @@
                 <div class="max-w-sm overflow-hidden">
                     <h4 class="mb-3">
                         <a class="text-indigo-darker text-3xl hover:text-indigo-dark" href="{{ route('front.tech') }}">
-                            {{ __('Technologies') }}
+                            @lang('text.activities.technologies.title')
                         </a>
                     </h4>
                     <a class="block mb-3" href="{{ route('front.tech') }}">
-                        <img src="{{ asset('img/mytechnologies.jpg') }}" alt="{{ __('Technologies') }}">
+                        <img src="{{ asset('img/mytechnologies.jpg') }}" alt="@lang('text.activities.technologies.title')">
                     </a>
                     <p class="text-justify">
-                        @lang('text.about_technologies')
+                        @lang('text.activities.technologies.content')
                     </p>
                 </div>
             </div>
