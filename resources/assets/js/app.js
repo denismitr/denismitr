@@ -19,5 +19,17 @@ Vue.component('locale-select', require('./components/Locale.vue'));
 Vue.component('contact-form', require('./components/ContactForm'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
+    computed: {
+        menuClasses() {
+            return {
+                'hidden': !this.menuVisible,
+            }
+        }
+    },
+
+    data: {
+        menuVisible: false,
+    }
 });

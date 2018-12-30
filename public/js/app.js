@@ -50134,7 +50134,19 @@ Vue.component('locale-select', __webpack_require__("./resources/assets/js/compon
 Vue.component('contact-form', __webpack_require__("./resources/assets/js/components/ContactForm.vue"));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+
+    computed: {
+        menuClasses: function menuClasses() {
+            return {
+                'hidden': !this.menuVisible
+            };
+        }
+    },
+
+    data: {
+        menuVisible: false
+    }
 });
 
 /***/ }),

@@ -44,7 +44,7 @@
                     </h1>
     
                     <div class="md:hidden">
-                        <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+                        <button @click="menuVisible = !menuVisible" class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
                             <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <title>Menu</title>
                                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
@@ -52,13 +52,13 @@
                         </button>
                     </div>
                         
-                    <div class="w-flow block flex-grow md:flex md:items-center w-full md:w-auto lg:w-auto">
+                    <div :class="menuClasses" class="w-flow flex-grow md:flex md:items-center w-full md:w-auto lg:w-auto" role="menu">
                         <div class="md:w-full text-sm md:flex justify-end">
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.home') }}">{{ __('Home') }}</a>
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.tech') }}">{{ __('Technologies') }}</a>
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.blog') }}">@lang('blog.menu')</a>
-                            <a class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
+                            <a role="menuitem" class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.home') }}">{{ __('Home') }}</a>
+                            <a role="menuitem" class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.projects') }}">{{ __('Projects') }}</a>
+                            <a role="menuitem" class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.tech') }}">{{ __('Technologies') }}</a>
+                            <a role="menuitem" class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.blog') }}">@lang('blog.menu')</a>
+                            <a role="menuitem" class="mt-4 py-7 px-4 text-grey block md:inline-block md:mt-0 hover:text-white hover:bg-red" href="{{ route('front.contact') }}">{{ __('Contact') }}</a>
                         </div>
                     </div>
                 </nav>
