@@ -20,7 +20,8 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->text('body');
             $table->string('email');
-            $table->boolean('sent');
+            $table->boolean('sent')->default(false);
+            $table->boolean('spam')->default(false);
             $table->timestamps();
 
             $table->unique('hash');

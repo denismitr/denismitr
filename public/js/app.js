@@ -1646,6 +1646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuelidate_lib_validators__ = __webpack_require__("./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vuelidate_lib_validators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_FormSecurityMath__ = __webpack_require__("./resources/assets/js/services/FormSecurityMath.js");
 //
 //
 //
@@ -1678,6 +1679,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -1701,6 +1710,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return '';
         },
+        noRobotLabel: function noRobotLabel() {
+            return this.lang === 'ru' ? 'Я не робот' : "I'm no robot";
+        },
+        noRobotQuestion: function noRobotQuestion() {
+            if (!this.equation) {
+                console.error("Equation has not been initialized.");
+                return '';
+            }
+
+            return this.lang === 'ru' ? '\u0420\u0435\u0448\u0438\u0442\u0435 \u0437\u0430\u0434\u0430\u0447\u043A\u0443: ' + this.equation.first + ' ' + this.equation.operand + ' ' + this.equation.second + ' = ?. \u041C\u043E\u0436\u0435\u0442\u0435 \u0432\u0437\u044F\u0442\u044C \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440.' : 'Solve an equation: ' + this.equation.first + ' ' + this.equation.operand + ' ' + this.equation.second + ' = ?. You can use a calculator';
+        },
+        noRobotIncorrect: function noRobotIncorrect() {
+            return this.lang === 'ru' ? 'Неправильно!' : 'Incorrect!';
+        },
         errorMessage: function errorMessage() {
             if (this.error) {
                 return this.lang === 'ru' ? 'Ошибка! Некорректные данные.' : 'Error! Bad input.';
@@ -1712,43 +1735,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.lang === 'ru' ? {
                 name: {
                     label: 'Ваше имя',
-                    placeholder: 'Введите ваше имя'
+                    placeholder: 'Введите ваше имя',
+                    error: '\u0418\u043C\u044F \u0434\u043E\u043B\u0436\u043D\u043E \u0438\u043C\u0435\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + this.$v.form.name.$params.minLength.min + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432'
                 },
                 email: {
                     label: 'Ваш адрес электронной почты',
-                    placeholder: 'Ваш email'
+                    placeholder: 'Ваш email',
+                    error: 'Email имеет неверный формат'
                 },
                 body: {
                     label: 'Текст сообщения',
-                    placeholder: 'Введите текст сообщения'
+                    placeholder: 'Введите текст сообщения',
+                    error: '\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0434\u043E\u043B\u0436\u043D\u043E \u0438\u043C\u0435\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + this.$v.form.body.$params.minLength.min + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432'
                 },
                 button: 'Отправить'
             } : {
                 name: {
                     label: 'Your name',
-                    placeholder: 'Type your name'
+                    placeholder: 'Type your name',
+                    error: 'Name must contain no less than ' + this.$v.form.name.$params.minLength.min + ' characters'
                 },
                 email: {
                     label: 'Your email',
-                    placeholder: 'Type your email'
+                    placeholder: 'Type your email',
+                    error: 'Email must have a valid format'
                 },
                 body: {
                     label: 'Message',
-                    placeholder: 'Type your messages'
+                    placeholder: 'Type your messages',
+                    error: 'Body must contain no less than ' + this.$v.form.body.$params.minLength.min + ' characters'
                 },
                 button: 'Submit'
             };
-        },
-        nameError: function nameError() {
-            return this.lang === 'ru' ? '\u0418\u043C\u044F \u0434\u043E\u043B\u0436\u043D\u043E \u0438\u043C\u0435\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + this.$v.form.name.$params.minLength.min + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432' : 'Name must contain no less than ' + this.$v.form.name.$params.minLength.min + ' characters';
-        },
-        emailError: function emailError() {
-            return this.lang === 'ru' ? 'Email \u0438\u043C\u0435\u0435\u0442 \u043D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442' : 'Email must have a valid format';
         }
     },
 
     created: function created() {
         if (this.sent) this.submitting = false;
+
+        this.mathService = new __WEBPACK_IMPORTED_MODULE_4__services_FormSecurityMath__["a" /* default */](10, 50);
     },
 
 
@@ -1760,6 +1785,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 body: ''
             },
 
+            equation: {
+                first: null,
+                second: null,
+                answer: '',
+                correct: null,
+                lastError: false
+            },
+
+            mathService: null,
+
             submitting: true,
 
             success: false,
@@ -1768,24 +1803,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        validateInput: function validateInput() {
+            this.$v.$touch();
+            this.error = this.$v.$invalid;
+        },
         onSubmit: function onSubmit() {
             var _this = this;
 
-            this.$v.$touch();
-            return console.log(this.$v);
-            if (!this.submitting) {
-                this.submitting = true;
+            this.validateInput();
 
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/contacts', this.form).then(function (response) {
-                    _this.submitting = false;
-                    _this.success = true;
-                    console.log(response);
-                }).catch(function (err) {
-                    _this.submitting = false;
-                    _this.success = false;
-                    _this.error = true;
-                    console.log(err);
-                });
+            if (!this.submitting && !this.error) {
+                this.equationCheck();
+
+                if (this.equation.correct) {
+                    this.submitting = true;
+
+                    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/contacts', this.form).then(function (response) {
+                        _this.submitting = false;
+                        _this.success = true;
+                        console.log(response);
+                    }).catch(function (err) {
+                        _this.submitting = false;
+                        _this.success = false;
+                        _this.error = true;
+                        console.log(err);
+                    });
+                }
+            }
+        },
+        createEquation: function createEquation() {
+            var _mathService$createEq = this.mathService.createEquation(),
+                first = _mathService$createEq.first,
+                second = _mathService$createEq.second,
+                operand = _mathService$createEq.operand,
+                answer = _mathService$createEq.answer,
+                correct = _mathService$createEq.correct;
+
+            this.equation.first = first;
+            this.equation.second = second;
+            this.equation.operand = operand;
+            this.equation.answer = answer;
+            this.equation.correct = correct;
+        },
+        equationCheck: function equationCheck() {
+            if (this.equation.first === null) {
+                this.createEquation();
+                return;
+            }
+
+            if (this.equation.correct !== true) {
+                this.equation.correct = this.mathService.validate(this.equation);
+
+                if (!this.equation.correct) {
+                    console.error("Invalid answer:", this.equation.answer);
+                    this.equation.lastError = true;
+                    this.createEquation();
+                }
             }
         }
     },
@@ -36636,7 +36709,8 @@ var render = function() {
       ? _c(
           "form",
           {
-            staticClass: "bg-white rounded px-8 pt-6 pb-8 mb-4",
+            staticClass:
+              "bg-white border border-red-dark rounded px-8 pt-6 pb-8 mb-4",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -36661,7 +36735,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                  "shadow-inner appearance-none border rounded w-full py-4 px-3 text-grey-darker leading-tight focus:outline-none focus:border-blue-dark",
                 attrs: { type: "text" },
                 domProps: { value: _vm.form.name },
                 on: {
@@ -36676,7 +36750,7 @@ var render = function() {
               _vm._v(" "),
               !_vm.$v.form.name.minLength
                 ? _c("div", { staticClass: "text-red p-2 text-sm" }, [
-                    _vm._v(_vm._s(_vm.nameError))
+                    _vm._v(_vm._s(_vm.text.name.error))
                   ])
                 : _vm._e()
             ]),
@@ -36697,7 +36771,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                  "shadow-inner appearance-none border rounded w-full py-4 px-3 text-grey-darker leading-tight focus:outline-none focus:border-blue-dark",
                 attrs: { type: "text" },
                 domProps: { value: _vm.form.email },
                 on: {
@@ -36712,7 +36786,7 @@ var render = function() {
               _vm._v(" "),
               !_vm.$v.form.email.email
                 ? _c("div", { staticClass: "text-red p-2 text-sm" }, [
-                    _vm._v(_vm._s(_vm.emailError))
+                    _vm._v(_vm._s(_vm.text.email.error))
                   ])
                 : _vm._e()
             ]),
@@ -36733,7 +36807,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outlin",
+                  "shadow-inner appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-blue-dark",
                 attrs: { rows: "14" },
                 domProps: { value: _vm.form.body },
                 on: {
@@ -36744,8 +36818,65 @@ var render = function() {
                     _vm.$set(_vm.form, "body", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              !_vm.$v.form.body.minLength
+                ? _c("div", { staticClass: "text-red p-2 text-sm" }, [
+                    _vm._v(_vm._s(_vm.text.body.error))
+                  ])
+                : _vm._e()
             ]),
+            _vm._v(" "),
+            _vm.equation.first && _vm.equation.second
+              ? _c("div", { staticClass: "mb-6" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold mb-2"
+                    },
+                    [_vm._v(_vm._s(_vm.noRobotLabel))]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.equation.answer,
+                        expression: "equation.answer"
+                      }
+                    ],
+                    staticClass:
+                      "shadow-inner appearance-none border rounded w-full py-4 px-3 text-grey-darker leading-tight focus:outline-none focus:border-blue-dark",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Type your answer",
+                      name: "age",
+                      required: ""
+                    },
+                    domProps: { value: _vm.equation.answer },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.equation, "answer", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-primary p-2" }, [
+                    _vm._v(_vm._s(_vm.noRobotQuestion))
+                  ]),
+                  _vm._v(" "),
+                  _vm.equation.lastError
+                    ? _c("div", { staticClass: "text-red p-2 text-sm" }, [
+                        _vm._v(_vm._s(_vm.noRobotIncorrect))
+                      ])
+                    : _vm._e()
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
@@ -50219,6 +50350,97 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/services/FormSecurityMath.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var FormSecurityMath = function () {
+    function FormSecurityMath() {
+        var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+        var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+        var operands = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+        _classCallCheck(this, FormSecurityMath);
+
+        this.min = Math.ceil(min);
+        this.max = Math.floor(max);
+        this.operands = operands || ['+', '*', '-'];
+
+        if (this.min > this.max) {
+            throw new Error('Min number [' + this.min + '] must be less than max [' + this.max + ']');
+        }
+    }
+
+    _createClass(FormSecurityMath, [{
+        key: 'createEquation',
+        value: function createEquation() {
+            var operand = this._randomOperand();
+            var first = Math.round(this._randomFirst());
+            var second = Math.round(this._randomSecond(first));
+
+            return { operand: operand, first: first, second: second, answer: '', correct: null };
+        }
+    }, {
+        key: 'validate',
+        value: function validate(equation) {
+            if (!equation.first || !equation.second || !equation.operand || !equation.answer) {
+                console.error('Incomplete equation passed', equation);
+            }
+
+            var first = equation.first,
+                second = equation.second,
+                operand = equation.operand,
+                answer = equation.answer;
+
+
+            var correctAnswer = this._getCorrectAnswer(first, second, operand);
+
+            return correctAnswer === parseInt(answer);
+        }
+    }, {
+        key: '_getCorrectAnswer',
+        value: function _getCorrectAnswer(first, second, operand) {
+            switch (operand) {
+                case '+':
+                    return first + second;
+                case '-':
+                    return first - second;
+                case '*':
+                    return first * second;
+                default:
+                    throw new Error('Operand ' + operand + ' is not supported.');
+            }
+        }
+    }, {
+        key: '_randomOperand',
+        value: function _randomOperand() {
+            return this.operands[Math.floor(Math.random() * this.operands.length)];
+        }
+    }, {
+        key: '_randomFirst',
+        value: function _randomFirst() {
+            return Math.random() * (this.max - this.min + 1) + this.min;
+        }
+    }, {
+        key: '_randomSecond',
+        value: function _randomSecond(actualFirst) {
+            return Math.random() * (actualFirst - this.min + 1) + this.min;
+        }
+    }]);
+
+    return FormSecurityMath;
+}();
+
+;
+
+/* harmony default export */ __webpack_exports__["a"] = (FormSecurityMath);
 
 /***/ }),
 
