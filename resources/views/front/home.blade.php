@@ -7,5 +7,6 @@
 @section('content')
 @include('front.components._about-me')
 @include('front.components._activities')
+@include('front.components._tech')
 @include('front.components._latest-projects')
 @endsection

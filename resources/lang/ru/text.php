@@ -19,5 +19,8 @@ return [
     ],
     'about' => [
         'title' => 'Обо <span class="text-red">мне</span>'
+    ],
+    'tech' => [
+        'title' => 'Мои <span class="text-red">технологии</span>',
     ]
 ];

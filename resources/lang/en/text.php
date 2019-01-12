@@ -19,5 +19,8 @@ return [
     ],
     'about' => [
         'title' => 'About <span class="text-red">me</span>'
+    ],
+    'tech' => [
+        'title' => 'My <span class="text-red">favorite</span> technologies',
     ]
 ];
