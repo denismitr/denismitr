@@ -28,12 +28,17 @@ class IdentifyLocale
     {
         $requestLocale = $request->server('HTTP_ACCEPT_LANGUAGE');
         $sessionLocale = session()->get('locale');
+        $queryLocale = $request->input('lang');
 
         if ($sessionLocale === 'ru' || $sessionLocale === 'en') {
             return $sessionLocale;
         }
 
-        if ( ! is_string($requestLocale) || ! Str::startsWith($requestLocale, 'ru') ) {
+        if ( is_string($requestLocale) || Str::startsWith($requestLocale, 'ru') ) {
+            return 'ru';
+        }
+
+        if ( is_string($queryLocale) || $queryLocale === 'ru' ) {
             return 'ru';
         }
 

@@ -1938,13 +1938,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onChange: function onChange(e) {
-            var uri = e.target.value === 'ru' ? '/locale/russian/change' : '/locale/english/change';
+            var _this = this;
+
+            var lang = e.target.value === 'ru' ? 'ru' : 'en';
+            var uri = lang === 'ru' ? '/locale/russian/change' : '/locale/english/change';
 
             window.axios.post(uri).then(function () {
-                document.location.reload();
+                document.location.replace(_this.getReplacePath(document.location, lang));
             }).catch(function (error) {
                 console.log(e.target.value);
             });
+        },
+        getReplacePath: function getReplacePath(location, lang) {
+            return '' + location.origin + location.pathname + '?lang=' + lang;
         }
     },
 

@@ -34,3 +34,14 @@ if ( ! function_exists('route_is') ) {
         return request()->routeIs($pattern);
     }
 }
+
+if ( ! function_exists('route_lang') ) {
+    function route_lang(string $name, array $parameters = [], bool $absolute = true)
+    {
+        $parameters = array_merge($parameters, [
+            'lang' => app()->isLocale('ru') ? 'ru' : 'en',
+        ]);
+
+        return app('url')->route($name, $parameters, $absolute);
+    }
+}

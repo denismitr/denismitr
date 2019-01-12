@@ -16,15 +16,22 @@
 
         methods: {
             onChange (e) {
-                const uri = e.target.value === 'ru' ? 
+                const lang = e.target.value === 'ru' ? 'ru' : 'en';
+                const uri = lang === 'ru' ?
                     '/locale/russian/change' : 
                     '/locale/english/change';
 
                 window.axios.post(uri).then(() => {
-                    document.location.reload();
+                    document.location.replace(
+                        this.getReplacePath(document.location, lang)
+                    );
                 }).catch(error => {
                     console.log(e.target.value);
                 });    
+            },
+
+            getReplacePath(location, lang) {
+                return `${location.origin}${location.pathname}?lang=${lang}`;
             }
         },
 

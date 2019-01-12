@@ -8,7 +8,7 @@
             and those are PHP 7, Python 3, GO and Elixir. I love working with modern frameworks like Laravel, Django and Phoenix.
         </p>
         <p>
-            Currently I'm working at <a class="text-red hover:text-red-dark" target="_blank" href="https://amazingecommelite.com">EcommElite</a>.
+            Currently I'm working at <a class="text-red hover:text-red-dark" target="_blank" href="https://tixel.com.au">Tixel</a>.
         </p>
     </article>
 </div>
