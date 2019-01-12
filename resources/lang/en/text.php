@@ -3,13 +3,21 @@
 return [
     "name" => "Denis Mitrofanov",
     'activities' => [
+        'title' => 'Building <span class="text-red">web services</span> and <span class="text-red">SAAS applications</span>',
         'technologies' => [
             'title' => 'Technologies',
-            'content' => 'Very often I work as a full stack developer, encountering various technologies sometimes experimental, every now and then even come up with UI ideas. In many years I gained experience with various databases, setting up and orchestrating servers, solved compatibility issues.'
+            'content' => 'Very often I work as a full stack developer, encountering various technologies sometimes experimental. In many years I gained experience with various databases, setting up and orchestrating servers, solving compatibility issues.'
+        ],
+        'blog' => [
+            'title' => 'Blog',
+            'content' => 'I like writing about my coding experience. It also helps me remember new tricks and hacks. And I can always come back to my blog to remind myself of the particular use cases, tools and technics'
+        ],
+        'projects' => [
+            'title' => 'Projects',
+            'content' => 'I develop web projects for small and mid-sized businesses and non-profit organizations. On this web site you can see the projects I worked on, maybe get an idea of how web technologies can be useful for your own business.'
         ]
     ],
-    'about_me' => "",
-    'about_projects' => "I develop web projects for businesses and non-profit organizations, а так же для частных лиц, занимающихся творческой или коммерческой деятельностью. Здесь вы сможете ознакомиться с примерами моих работ, составить себе представление о том, какую информацию может нести в себе веб-сайт и как это может помочь продвижению вашего бизнеса или вашей творческой работе.",
-    'about_technologies' => "Я выполняю полный комплекс работ по созданию веб-сайтов, использую самые современные и надежные технологии. Я могу предложить необычный дизайн, организовать работу базы данных, настроить совместимость со всеми современными браузерами и мобильными устройствами, гарантирую регистрацию сайта в поисковых системах Яндекс и Google.",
-    'about_blog' => "I like writing about my coding experience. It also helps me remember new tricks and hacks. And I can always come back to my blog to remind myself of the particular use cases and usages of tools and technics",
+    'about' => [
+        'title' => 'About <span class="text-red">me</span>'
+    ]
 ];
