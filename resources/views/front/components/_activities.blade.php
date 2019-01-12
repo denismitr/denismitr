@@ -22,11 +22,11 @@
             <div class="w-1/3 px-3">
                 <div class="max-w-sm overflow-hidden">
                     <h4 class="mb-3">
-                        <a class="text-indigo-darker text-3xl hover:text-indigo-dark" href="{{ route_lang('front.tech') }}">
+                        <a class="text-indigo-darker text-3xl hover:text-indigo-dark" href="#tech">
                             @lang('text.activities.technologies.title')
                         </a>
                     </h4>
-                    <a class="block mb-3" href="{{ route_lang('front.tech') }}">
+                    <a class="block mb-3" href="#tech">
                         <img src="{{ asset('img/mytechnologies.jpg') }}" alt="@lang('text.activities.technologies.title')">
                     </a>
                     <p class="text-justify">

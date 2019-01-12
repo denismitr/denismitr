@@ -15,7 +15,6 @@
 Route::get('/', 'FrontPagesController@home')->name('front.home');
 Route::get('/contact', 'FrontPagesController@contact')->name('front.contact');
 Route::get('/projects', 'FrontPagesController@projects')->name('front.projects');
-Route::get('/tech', 'FrontPagesController@tech')->name('front.tech');
 
 Route::group(['prefix' => 'blog'], function() {
     Route::get('/', 'BlogController@index')->name('front.blog');

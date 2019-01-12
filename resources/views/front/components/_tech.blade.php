@@ -1,5 +1,5 @@
 <div class="w-full min-h-full bg-grey-light">
-    <article class="container mx-auto py-4">
+    <article class="container mx-auto py-4" id="tech">
         <h3 class="border-b-2 border-white border-solid py-2 mb-6 text-grey text-4xl">
             @lang('text.tech.title')
         </h3>

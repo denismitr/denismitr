@@ -19,11 +19,6 @@ class FrontPagesController extends Controller
         return view('front.home', compact('projects'));
     }
 
-    public function blog()
-    {
-        return view('front.blog');
-    }
-
     /**
      * @param Request $request
      * @param ContactHash $contactHash
@@ -43,10 +38,5 @@ class FrontPagesController extends Controller
             ->paginate(5);
 
         return view('front.projects', compact('projects'));
-    }
-
-    public function tech()
-    {
-        return view('front.tech');
     }
 }

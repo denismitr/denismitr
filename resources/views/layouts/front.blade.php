@@ -37,7 +37,7 @@
             <div class="container mx-auto">
                 <nav class="flex items-center justify-between px-5 bg-white flex-wrap">
                     <h1 class="flex items-center flex-no-shrink text-2xl mr-6 my-0 p-3">
-                        <a class="text-grey no-underline" href="#">
+                        <a class="text-grey no-underline" href="{{ route_lang('front.home') }}">
                             <span class="text-red">{{ business('first_name') }}</span>
                             <span class="text-grey">{{ business('last_name') }}</span>
                         </a>
