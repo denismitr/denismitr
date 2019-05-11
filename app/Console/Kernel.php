@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\CreateAdminCommand;
 use App\Console\Commands\CreateAuthGroup;
+use App\Console\Commands\CreateBusiness;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         CreateAuthGroup::class,
         CreateAdminCommand::class,
+        CreateBusiness::class,
     ];
 
     /**

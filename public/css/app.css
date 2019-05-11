@@ -6427,6 +6427,10 @@ table {
   z-index: auto;
 }
 
+body {
+  font-size: 14px;
+}
+
 a {
   text-decoration: none;
 }
