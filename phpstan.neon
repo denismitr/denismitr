@@ -1,0 +1,8 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+parameters:
+    level: 3
+    ignoreErrors:
+        - '#Access to an undefined property object::\$disk#'
+    excludes_analyse:
+        - /*/*/FileToBeExcluded.php

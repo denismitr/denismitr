@@ -10,13 +10,13 @@ class LocaleController extends Controller
     {
         session()->put('locale', 'ru');
 
-        return response()->json(null, 204);
+        return response()->json([], 204);
     }
 
     public function english()
     {
         session()->put('locale', 'en');
 
-        return response()->json(null, 204);
+        return response()->json([], 204);
     }
 }

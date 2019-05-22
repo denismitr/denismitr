@@ -34,7 +34,7 @@ class IdentifyLocale
             return $sessionLocale;
         }
 
-        if ( is_string($requestLocale) || Str::startsWith($requestLocale, 'ru') ) {
+        if ( is_string($requestLocale) || Str::startsWith(strval($requestLocale), 'ru') ) {
             return 'ru';
         }
 

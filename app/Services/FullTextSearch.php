@@ -55,7 +55,7 @@ class FullTextSearch
     }
 
     /**
-     * @param $q
+     * @param mixed $q
      * @return string
      */
     protected function cleanNeedle($q): string

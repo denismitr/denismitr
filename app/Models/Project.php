@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
  * Class Project
  * @package App\Models
  * @property string $picture
+ * @property string $slug
+ * @property string $disk
  */
 class Project extends Model
 {

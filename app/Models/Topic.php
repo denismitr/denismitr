@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  *
  * @package App\Models
  *
- * @property Collection posts
+ * @property Collection $posts
  */
 class Topic extends Model
 {
