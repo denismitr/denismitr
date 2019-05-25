@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Helpers\Image;
 use App\Models\Business;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -48,5 +49,9 @@ class AppServiceProvider extends ServiceProvider
 
             return $parser;
         });
+
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('head')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+@endsection
+
 @section('content')
     <div class="card">
         <form action="{{ route('admin.business.update') }}" method="POST" class="card-content">
@@ -140,6 +144,22 @@
                 @endif
             </div>
 
+            <div class="field">
+                <label class="label">About ru</label>
+                <input id="about_ru" value="{{ old('about_ru', $business->about_ru ?? null) }}" type="hidden" name="about_ru">
+                @if($errors->has('about_ru'))
+                    <p class="help is-danger">{{ $errors->first('about_ru') }}</p>
+                @endif
+            </div>
+
+            <div class="field">
+                <label class="label">About ru</label>
+                <input id="about_en" value="{{ old('about_en', $business->about_en ?? null) }}" type="hidden" name="about_en">
+                @if($errors->has('about_en'))
+                    <p class="help is-danger">{{ $errors->first('about_en') }}</p>
+                @endif
+            </div>
+
             <div>
                 <button type="submit" class="button is-primary">
                     Update
@@ -147,4 +167,13 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <script>
+        const mdRu = new SimpleMDE({ element: document.getElementById("about_ru") });
+        const mdEn = new SimpleMDE({ element: document.getElementById("about_en") });
+    </script>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,15 +15,17 @@ class CreateContactsTable extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->ipAddress('ip');
             $table->string('hash');
             $table->string('name');
             $table->text('body');
             $table->string('email');
-            $table->boolean('sent')->default(false);
-            $table->boolean('spam')->default(false);
+            $table->string('status')->default(Contact::STATUS_PENDING);
+            $table->boolean('is_spam')->default(false);
             $table->timestamps();
+
+            $table->index('status');
 
             $table->unique('hash');
         });

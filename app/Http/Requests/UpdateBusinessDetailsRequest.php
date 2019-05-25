@@ -29,6 +29,8 @@ class UpdateBusinessDetailsRequest extends FormRequest
             'last_name_en' => 'required|min:3',
             'first_name_ru' => 'required|min:3',
             'last_name_ru' => 'required|min:3',
+            'about_ru' => 'required|min:3',
+            'about_en' => 'required|min:3',
             'twitter' => 'required|min:3',
             'facebook' => 'nullable|min:3',
         ];

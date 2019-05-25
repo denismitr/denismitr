@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('claps')->default(0);
 
             $table->unique('slug');
+            $table->index('parent_id');
 
             $table->timestamps();
 

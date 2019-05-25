@@ -30,7 +30,7 @@
                             <span class="mr-2">{{ __('My personal website') }}</span>
                             <locale-select locale="{{ app()->getLocale() }}"></locale-select>
                         </span>
-                        <span>{{ business('email') }}</span>
+                        <span>{{ $business->email }}</span>
                     </div>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                 <nav class="flex items-center justify-between px-5 bg-white flex-wrap">
                     <h1 class="flex items-center flex-no-shrink text-2xl mr-6 my-0 p-3">
                         <a class="text-grey no-underline" href="{{ route_lang('front.home') }}">
-                            <span class="text-red">{{ business('first_name') }}</span>
-                            <span class="text-grey">{{ business('last_name') }}</span>
+                            <span class="text-red">{{ $business->getFirstName() }}</span>
+                            <span class="text-grey">{{ $business->getLastName() }}</span>
                         </a>
                     </h1>
     

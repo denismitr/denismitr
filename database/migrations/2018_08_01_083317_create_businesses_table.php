@@ -21,7 +21,7 @@ class CreateBusinessesTable extends Migration
             $table->string('last_name_en', 35);
             $table->text('about_ru')->nullable();
             $table->text('about_en')->nullable();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('twitter');
             $table->string('facebook')->nullable();
             $table->timestamps();

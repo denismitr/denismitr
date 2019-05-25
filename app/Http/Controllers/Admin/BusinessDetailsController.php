@@ -37,6 +37,8 @@ class BusinessDetailsController extends Controller
             'last_name_en' => $request->last_name_en,
             'first_name_ru' => $request->first_name_ru,
             'last_name_ru' => $request->last_name_ru,
+            'about_en' => $request->about_en,
+            'about_ru' => $request->about_ru,
             'email' => $request->email,
         ]);
 
