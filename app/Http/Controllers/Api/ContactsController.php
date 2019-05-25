@@ -25,7 +25,7 @@ class ContactsController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'body' => $request->body,
-                'sent' => false,
+                'status' => Contact::STATUS_PENDING,
             ]);
         } catch (\Throwable $t) {
             Log::error($t->getMessage().' : '.$t->getFile().' : '.$t->getLine());

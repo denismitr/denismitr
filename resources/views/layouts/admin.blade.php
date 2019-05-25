@@ -79,6 +79,9 @@
                                 <a href="{{ route('admin.posts.index') }}" class="navbar-item">
                                     Posts
                                 </a>
+                                <a href="{{ route('admin.contacts.index') }}" class="navbar-item">
+                                    Contacts
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -128,6 +131,9 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('admin.projects.index') }}">Projects</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.contacts.index') }}">Contacts</a>
                                         </li>
                                     </ul>
                                 </div>

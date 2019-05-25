@@ -41,16 +41,74 @@ class Contact extends Model
     const STATUS_PENDING = 'pending';
     const STATUS_SENDING = 'sending';
     const STATUS_SENT = 'sent';
+    const STATUS_PROCESSED = 'processed';
+    const STATUS_ARCHIVED = 'archived';
+
+    const ACTIVE_STATUSES = [
+        self::STATUS_PENDING,
+        self::STATUS_SENDING,
+        self::STATUS_SENT,
+    ];
 
     protected $guarded = ['id'];
 
-    public function markAsSent()
+    public function markAsSent(): void
     {
-        $this->update(['sent' => true]);
+        $this->update(['status' => self::STATUS_SENT]);
+    }
+
+    public function markAsSending(): void
+    {
+        $this->update(['status' => self::STATUS_SENDING]);
+    }
+
+    public function markAsProcessed(): void
+    {
+        $this->update(['status' => self::STATUS_PROCESSED]);
+    }
+
+    public function markAsSpam(): void
+    {
+        $this->update(['is_spam' => true]);
+    }
+
+    public function markAsArchived(): void
+    {
+        $this->update(['status' => self::STATUS_ARCHIVED]);
     }
 
     public function isSpam(): bool
     {
         return !! $this->is_spam;
+    }
+
+    public function isPending(): bool
+    {
+        return $this->status === self::STATUS_PENDING;
+    }
+
+    public function isSending(): bool
+    {
+        return $this->status === self::STATUS_SENDING;
+    }
+
+    public function isSent(): bool
+    {
+        return $this->status === self::STATUS_SENT;
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->status === self::STATUS_ARCHIVED;
+    }
+
+    public function isProcessed(): bool
+    {
+        return $this->status === self::STATUS_PROCESSED;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereIsSpam(false)->whereIn('status', self::ACTIVE_STATUSES);
     }
 }

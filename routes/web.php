@@ -81,6 +81,15 @@ Route::group([
         Route::get('/{post}/confirm', 'PostsController@confirm')->name('admin.posts.confirm');
         Route::delete('/{post}', 'PostsController@destroy')->name('admin.posts.delete');
     });
+
+    Route::group(['prefix' => 'contacts'], function() {
+        Route::get('/', 'ContactsController@index')->name('admin.contacts.index');
+        Route::get('/{contact}', 'ContactsController@show')->name('admin.contacts.show');
+        Route::get('/{contact}/confirm', 'ContactsController@confirm')->name('admin.contacts.confirm');
+        Route::delete('/{contact}/destroy', 'ContactsController@destroy')->name('admin.contacts.destroy');
+        Route::put('/{contact}/archive', 'ContactsController@archive')->name('admin.contacts.archive');
+        Route::put('/{contact}/spam', 'ContactsController@spam')->name('admin.contacts.spam');
+    });
 });
 
 Route::post('/locale/russian/change', 'LocaleController@russian')
