@@ -75,10 +75,14 @@ class CreateBusiness extends Command
     private function getAboutRu()
     {
         return "
-            I'm a Software Engineer from Moscow. 
-            I learned programming years ago, when I was a kid. And for the last 5 years I work as a full-stack web developer. 
-            I'm rather agnostic when it comes to programming languages, frameworks and tools, however I've got my own favorites and those are PHP 7, Python 3, GO and Elixir. 
-            I love working with modern frameworks like Laravel, Django and Phoenix. 
+            <p class=\"mb-2 text-xl\">
+                Привет, я web разработчик из Москвы. 
+                Я научился программировать много лет назад, когда был ребенком. Последние 6 лет я работаю full-stack разработчиком. 
+                Будучи агностиком в отношение к языкам программирования, фреймворкам и инструментам, у меня все же есть любимый стек это -  PHP 7 и Laravel, Python 3 и Django, Java и Spring, GO.
+            </p>
+            <p>
+                В данный момент я работая в компании <a class=\"text-red hover:text-red-dark text-xl\" target=\"_blank\" href=\"https://tixel.com.au\">Tixel.com</a>.
+            </p> 
         ";
     }
 }
