@@ -14,5 +14,7 @@ class UsersTableSeeder extends Seeder
         \Illuminate\Support\Facades\Artisan::call('admin:create', [
             '--password' => 'secret',
         ]);
+
+        \Illuminate\Support\Facades\Artisan::call('business:create');
     }
 }

@@ -150,6 +150,6 @@ class Post extends Model
 
     public function parts()
     {
-        return $this->hasMany(Post::class, 'parent_id');
+        return $this->hasMany(Post::class, 'parent_id')->orderBy('part');
     }
 }

@@ -15,7 +15,7 @@ class BlogController extends Controller
     public function index()
     {
         $topics = Topic::orderBy('name')->get();
-        $posts = Post::with('topics')->topLevel()->recentlyPublished()->get();
+        $posts = Post::with('topics', 'parts')->topLevel()->recentlyPublished()->get();
 
         return view('front.blog.index', [
             'posts' => $posts,

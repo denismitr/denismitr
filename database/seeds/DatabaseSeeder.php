@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $tables = [
+            'business',
             'topics',
             'projects',
             'posts',
@@ -44,6 +46,8 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Model::reguard();
+
+        Cache::flush();
 
         $this->call(UsersTableSeeder::class);
         $this->call(TopicsTableSeeder::class);

@@ -56,15 +56,6 @@ class CreateAdminCommand extends Command
 
         AuthGroup::named('admins')->addUser($admin);
 
-        Business::create([
-            'first_name_ru' => 'Denis',
-            'last_name_ru' => 'Mitrofanov',
-            'first_name_en' => 'Denis',
-            'last_name_en' => 'Mitrofanov',
-            'email' => 'denis.mitr@gmail.com',
-            'twitter' => 'https://twitter.com/@denis_mitr',
-        ]);
-
         $this->info("\nDone");
     }
 }

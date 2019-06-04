@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
     {
         $topics = \App\Models\Topic::all();
 
-        $topicSyncher = function($post) use ($topics) {
+        $topicSyncher = function ($post) use ($topics) {
             $post->topics()->attach($topics->shuffle()->random()->id);
             $post->topics()->attach($topics->shuffle()->random()->id);
             $post->topics()->attach($topics->shuffle()->random()->id);
@@ -29,10 +29,19 @@ class PostsTableSeeder extends Seeder
             ->create()
             ->each($topicSyncher);
 
-        $parentPosts->each(function($post) {
+        $parentPosts->each(function ($post) {
             if (!mt_rand(0, 7)) {
-                factory(\App\Models\Post::class, mt_rand(2, 4))->states('child')->create([
+                factory(\App\Models\Post::class)->states('child')->create([
                     'parent_id' => $post,
+                    'part' => 2,
+                ]);
+                factory(\App\Models\Post::class)->states('child')->create([
+                    'parent_id' => $post,
+                    'part' => 3,
+                ]);
+                factory(\App\Models\Post::class)->states('child')->create([
+                    'parent_id' => $post,
+                    'part' => 4,
                 ]);
             }
         });
