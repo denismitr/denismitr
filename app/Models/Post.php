@@ -69,6 +69,11 @@ class Post extends Model
         return $this->slug;
     }
 
+    public function getUrl(): string
+    {
+        return route('front.blog.post', $this->getRouteKey());
+    }
+
     public function getTopicIdsAttribute()
     {
         if ($this->topics->count() === 0) {
@@ -103,6 +108,14 @@ class Post extends Model
         }
 
         return $this->published_at->toDateString();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasParent(): bool
+    {
+        return !! $this->parent;
     }
 
     /**
@@ -151,5 +164,10 @@ class Post extends Model
     public function parts()
     {
         return $this->hasMany(Post::class, 'parent_id')->orderBy('part');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Post::class, 'parent_id');
     }
 }

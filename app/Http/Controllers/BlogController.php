@@ -27,9 +27,9 @@ class BlogController extends Controller
      * @param Post $post
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function post(Post $post)
+    public function post($post)
     {
-        $post->load('topics', 'parts');
+        $post = Post::whereSlug($post)->with('topics', 'parts', 'parent.parts')->firstOrFail();
 
         return view('front.blog.post', compact('post'));
     }

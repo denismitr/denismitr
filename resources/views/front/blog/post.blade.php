@@ -16,6 +16,8 @@
                             {!!  present_post_title($post->name) !!}
                         </h1>
 
+                        @include('front.blog._parts')
+
                         <p>
                             {!! present_post_body($post->body) !!}
                         </p>

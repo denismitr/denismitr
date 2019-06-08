@@ -6,5 +6,6 @@ return [
         'button' => 'Search'
     ],
     'menu' => 'Blog',
-    'back' => 'Back to index'
+    'back' => 'Back to index',
+    'part' => 'Part',
 ];
